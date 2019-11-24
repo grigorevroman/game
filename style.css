@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+}
+#game {
+	width: 1000px;
+	height: 400px;
+	outline: 1px dotted black;
+	position: relative;
+	overflow: hidden;
+}
+#bg {
+	width: 2000px;
+	height: 400px;
+	outline: 1px dotted black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url(images/background.png);
+	background-repeat: repeat-x;
+}
+#hero {
+    position: absolute;
+	outline: 1px dotted black;
+    top: 125px;
+    left: 50px;
+    width: 100px;
+    height: 150px;
+}
