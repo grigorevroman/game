@@ -22,13 +22,23 @@ monsters = [],
 
 numberPixelsBetweenMonsters = 500;
 
-bg.width(2000);
+bg.width(3000);
 
 numberMonsters = parseInt(bg.width() / numberPixelsBetweenMonsters);
 
 monsters = getMonsters();
 
 console.log(monsters);
+
+function addMonster()
+{
+	if (-getBgPos() >= monsters[0]) {
+		monsters.shift();
+		$('#bg').append('<div class="monster"></div>');
+		$('.monster').css({left: 1000 + (-getBgPos())});
+	}
+	/*return getMonsterPos() - 1;*/
+}
 
 function getHeroPosCenter()
 {
@@ -40,9 +50,9 @@ function getMonsters()
 	var i = 0,
 	c = [],
 	b = 0;
-	while (i < 4) { // выводит 0, затем 1, затем 2
+	while (i < numberMonsters) {
+		c.push(b);
 		b += numberPixelsBetweenMonsters;
-		c[b] = false;
 		i++;
 	}
 	return c;
@@ -114,11 +124,6 @@ function bgPos(v, a, b)
 	return result;
 }
 
-function bgMonster()
-{
-	return getMonsterPos() - 1;
-}
-
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
 });
@@ -137,9 +142,5 @@ setInterval(function() {
 			return bgPos(v, 39, 37);
 		}
 	});
-	monster.css({
-		left: function() {
-			return bgMonster();
-		}
-	});
+	addMonster();
 }, 20);
