@@ -1,105 +1,57 @@
 let
+screen = $('#screen'), // Jq экран
+bg = $('#bg'), // Jq задний фон
+hero = $('#hero'), // Jq герой
+x = 3, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
+betweenMonsters = 500, // Число пикселей между монстрами
+bgWidth = 3000, // Длинна заднего фона
+screenWidth = 1000, // Длинна экрана
+monstersPos = [], // Позиции монстров
+d = {}, // Состояние клавишь <- и ->
+diff, // Разница между длинной фона и экраном
+heroPosCenter; // Позиция центра экрана для героя
 
-/* Jq экран */
-screen = $('#screen'),
-
-/* Jq задний фон */
-bg = $('#bg'),
-
-/* Jq герой */
-hero = $('#hero'),
-
-/* Jq монстр */
-monster = $('.monster'),
-
-/* Состояние клавишь <- и -> */
-d = {},
-
-/* Количество пикселей, которое преодолевает герой при одном нажатии на клавишу */
-x = 3,
-
-monsters = [],
-
-numberPixelsBetweenMonsters = 500;
-
-bg.width(3000);
-
-numberMonsters = parseInt(bg.width() / numberPixelsBetweenMonsters);
-
-monsters = getMonsters();
-
-console.log(monsters);
-
-function addMonster()
-{
-	if (-getBgPos() >= monsters[0]) {
-		monsters.shift();
-		$('#bg').append('<div class="monster"></div>');
-		$('.monster').css({left: 1000 + (-getBgPos())});
-	}
-	/*return getMonsterPos() - 1;*/
-}
-
-function getHeroPosCenter()
-{
-	return (screen.width() - hero.width()) / 2;
-}
-
-function getMonsters()
-{
-	var i = 0,
-	c = [],
-	b = 0;
-	while (i < numberMonsters) {
-		c.push(b);
-		b += numberPixelsBetweenMonsters;
-		i++;
-	}
-	return c;
-}
-
-/* Получение текущей позиции заднего фона */
+/**
+ * Получение позиции заднего фона
+ * @returns {number}
+ */
 function getBgPos() 
 {
-	return parseInt(bg.css('left'));
+	return -parseInt(bg.css('left'));
 }
 
-/* Получение текущей позиции героя */
+/**
+ * Получение позиции героя
+ * @returns {number}
+ */
 function getHeroPos() 
 {
 	return parseInt(hero.css('left'));
 }
 
-/* Получение текущей позиции монстра */
-function getMonsterPos()
-{
-	return parseInt(monster.css('left'));
-}
-
-/* Перемещение героя */
+/**
+ * Перемещение героя
+ * @param v
+ * @param a
+ * @param b
+ * @returns {number}
+ */
 function heroPos(v, a, b) 
 {
-    var n = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
+    let newHeroPos = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
 	result;
-	
-	/* Если позиция героя максимально слева, то герой не движется левее */
-	if (n < 0) {
+
+	if (newHeroPos < 0) { // Если позиция героя максимально слева, то герой не движется левее
 		result = 0;
-		
-	/* Если позиция героя в середине экрана и задний фон не прокручен до конца, то герой стоит на месте */
-	} else if (
-		n >= getHeroPosCenter()
-		&& -getBgPos() < bg.width() - screen.width()
+	} else if ( // Если позиция героя в середине экрана и задний фон не прокручен до конца, то герой стоит в центре
+        newHeroPos >= heroPosCenter
+		&& getBgPos() < diff
 	) {
-		result = (screen.width() - hero.width()) / 2;
-		
-	/* Если позиция героя максимально справа, то не двигаться правее */
-	} else if (n > screen.width() - hero.width() - 50) {
+		result = heroPosCenter;
+	} else if (newHeroPos > screen.width() - hero.width() - 50) { // Если позиция героя максимально справа, не двигаться правее
 		result = screen.width() - hero.width() - 50;
-		
-	/* Движение героя в остальных случаях */
-	} else {
-		result = n;
+	} else { // Движение героя в остальных случаях
+		result = newHeroPos;
 	}
     return result;
 }
@@ -109,20 +61,56 @@ function bgPos(v, a, b)
 {
 	var n = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
 	result;
-	
+
 	/* Если герой в середине экрана и задний фон не прокручен до конца, то прокручиваем его */
 	if (
-		getHeroPos() >= getHeroPosCenter()
-		&& -getBgPos() < bg.width() - screen.width()
+		getHeroPos() >= heroPosCenter
+		&& getBgPos() < diff
 	) {
 		result = n;
 
 	/* Если задний фон прокручен до конца, то останавливаем его */
-	} else if (-n >= bg.width() - screen.width()) {
-		result = -(bg.width() - screen.width());
+	} else if (-n >= diff) {
+		result = -(diff);
 	}
 	return result;
 }
+
+/**
+ * Добавление монстра
+ */
+function addMonster()
+{
+    if (getBgPos() >= monstersPos[0]) {
+        let pos = monstersPos.shift();
+        $('#bg').append('<div class="monster"></div>');
+        $('.monster').css({left: screenWidth + pos});
+    }
+    /*return getMonsterPos() - 1;*/
+}
+
+/**
+ * Получение позиций монстров
+ * @returns {Array}
+ */
+function getMonstersPos()
+{
+    let i = 0,
+        result = [],
+        pos = 0;
+    while (i < numberMonsters) {
+        result.push(pos);
+        pos += betweenMonsters;
+        i++;
+    }
+    return result;
+}
+
+bg.width(bgWidth);
+numberMonsters = parseInt(bgWidth / betweenMonsters);
+monstersPos = getMonstersPos();
+diff = bg.width() - screen.width();
+heroPosCenter = (screen.width() - hero.width()) / 2;
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
