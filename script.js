@@ -1,7 +1,7 @@
-var
+let
 
 /* Jq экран */
-game = $('#game'),
+screen = $('#screen'),
 
 /* Jq задний фон */
 bg = $('#bg'),
@@ -32,7 +32,7 @@ console.log(monsters);
 
 function getHeroPosCenter()
 {
-	return (game.width() - hero.width()) / 2;
+	return (screen.width() - hero.width()) / 2;
 }
 
 function getMonsters()
@@ -79,13 +79,13 @@ function heroPos(v, a, b)
 	/* Если позиция героя в середине экрана и задний фон не прокручен до конца, то герой стоит на месте */
 	} else if (
 		n >= getHeroPosCenter()
-		&& -getBgPos() < bg.width() - game.width()
+		&& -getBgPos() < bg.width() - screen.width()
 	) {
-		result = (game.width() - hero.width()) / 2;
+		result = (screen.width() - hero.width()) / 2;
 		
 	/* Если позиция героя максимально справа, то не двигаться правее */
-	} else if (n > game.width() - hero.width() - 50) {
-		result = game.width() - hero.width() - 50;
+	} else if (n > screen.width() - hero.width() - 50) {
+		result = screen.width() - hero.width() - 50;
 		
 	/* Движение героя в остальных случаях */
 	} else {
@@ -103,13 +103,13 @@ function bgPos(v, a, b)
 	/* Если герой в середине экрана и задний фон не прокручен до конца, то прокручиваем его */
 	if (
 		getHeroPos() >= getHeroPosCenter()
-		&& -getBgPos() < bg.width() - game.width()
+		&& -getBgPos() < bg.width() - screen.width()
 	) {
 		result = n;
 
 	/* Если задний фон прокручен до конца, то останавливаем его */
-	} else if (-n >= bg.width() - game.width()) {
-		result = -(bg.width() - game.width());
+	} else if (-n >= bg.width() - screen.width()) {
+		result = -(bg.width() - screen.width());
 	}
 	return result;
 }
