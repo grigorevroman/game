@@ -9,6 +9,9 @@ bg = $('#bg'),
 /* Jq герой */
 hero = $('#hero'),
 
+/* Jq монстр */
+monster = $('.monster'),
+
 /* Состояние клавишь <- и -> */
 d = {},
 
@@ -25,6 +28,12 @@ function getBgPos()
 function getHeroPos() 
 {
 	return parseInt(hero.css('left'));
+}
+
+/* Получение текущей позиции монстра */
+function getMonsterPos()
+{
+	return parseInt(monster.css('left'));
 }
 
 /* Перемещение героя */
@@ -67,8 +76,17 @@ function bgPos(v, a, b)
 		&& -getBgPos() < bg.width() - game.width()
 	) {
 		result = n;
+
+	/* Если задний фон прокручен до конца, то останавливаем его */
+	} else if (-n >= bg.width() - game.width()) {
+		result = -(bg.width() - game.width());
 	}
 	return result;
+}
+
+function bgMonster()
+{
+	return getMonsterPos() - 1;
 }
 
 $(window).keydown(function(e) { 
@@ -87,6 +105,11 @@ setInterval(function() {
 	bg.css({
 		left: function(i, v) {
 			return bgPos(v, 39, 37);
+		}
+	});
+	monster.css({
+		left: function() {
+			return bgMonster();
 		}
 	});
 }, 20);

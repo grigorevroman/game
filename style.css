@@ -9,7 +9,7 @@
 	overflow: hidden;
 }
 #bg {
-	width: 2000px;
+	width: 5000px;
 	height: 400px;
 	outline: 1px dotted black;
 	position: absolute;
@@ -25,4 +25,40 @@
     left: 50px;
     width: 100px;
     height: 150px;
+}
+#health {
+	width: 100px;
+	height: 10px;
+	outline: 1px solid black;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+#health-line {
+	position: absolute;
+	width: 100px;
+	height: 10px;
+	background-color: #48833f;
+}
+#magic {
+	width: 100px;
+	height: 10px;
+	outline: 1px solid black;
+	position: absolute;
+	left: 10px;
+	top: 25px;
+}
+#magic-line {
+	position: absolute;
+	width: 100px;
+	height: 10px;
+	background-color: #007fff;
+}
+.monster {
+	position: absolute;
+	outline: 1px solid red;
+	top: 125px;
+	left: 1000px;
+	width: 100px;
+	height: 150px;
 }
