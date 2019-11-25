@@ -16,7 +16,37 @@ monster = $('.monster'),
 d = {},
 
 /* Количество пикселей, которое преодолевает герой при одном нажатии на клавишу */
-x = 3;
+x = 3,
+
+monsters = [],
+
+numberPixelsBetweenMonsters = 500;
+
+bg.width(2000);
+
+numberMonsters = parseInt(bg.width() / numberPixelsBetweenMonsters);
+
+monsters = getMonsters();
+
+console.log(monsters);
+
+function getHeroPosCenter()
+{
+	return (game.width() - hero.width()) / 2;
+}
+
+function getMonsters()
+{
+	var i = 0,
+	c = [],
+	b = 0;
+	while (i < 4) { // выводит 0, затем 1, затем 2
+		b += numberPixelsBetweenMonsters;
+		c[b] = false;
+		i++;
+	}
+	return c;
+}
 
 /* Получение текущей позиции заднего фона */
 function getBgPos() 
@@ -48,7 +78,7 @@ function heroPos(v, a, b)
 		
 	/* Если позиция героя в середине экрана и задний фон не прокручен до конца, то герой стоит на месте */
 	} else if (
-		n >= (game.width() - hero.width()) / 2 
+		n >= getHeroPosCenter()
 		&& -getBgPos() < bg.width() - game.width()
 	) {
 		result = (game.width() - hero.width()) / 2;
@@ -72,7 +102,7 @@ function bgPos(v, a, b)
 	
 	/* Если герой в середине экрана и задний фон не прокручен до конца, то прокручиваем его */
 	if (
-		getHeroPos() >= (game.width() - hero.width()) / 2
+		getHeroPos() >= getHeroPosCenter()
 		&& -getBgPos() < bg.width() - game.width()
 	) {
 		result = n;
