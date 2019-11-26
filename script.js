@@ -2,7 +2,6 @@ let
 screen = $('#screen'), // Jq экран
 bg = $('#bg'), // Jq задний фон
 hero = $('#hero'), // Jq герой
-monster = $('.monster'), // Jq монстр
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 betweenMonsters = 500, // Число пикселей между монстрами
 bgWidth = 3000, // Длинна заднего фона
@@ -38,7 +37,7 @@ function getHeroPos()
  */
 function getMonsterPos()
 {
-	return parseInt(monster.css('left'));
+	return parseInt($('.monster').css('left'));
 }
 
 /**
@@ -195,7 +194,7 @@ setInterval(function() {
 	addMonster();
 	$('.monster').css({
         left: function() {
-            return parseInt($('.monster').css('left')) - 1;
+            return getMonsterPos() - 1;
         }
     });
 }, 20);
