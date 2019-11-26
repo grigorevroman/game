@@ -2,6 +2,7 @@ let
 screen = $('#screen'), // Jq экран
 bg = $('#bg'), // Jq задний фон
 hero = $('#hero'), // Jq герой
+monster = $('.monster'), // Jq монстр
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 betweenMonsters = 500, // Число пикселей между монстрами
 bgWidth = 3000, // Длинна заднего фона
@@ -32,6 +33,15 @@ function getHeroPos()
 }
 
 /**
+ * Получение позиции монстра
+ * @returns {number}
+ */
+function getMonsterPos()
+{
+	return parseInt(monster.css('left'));
+}
+
+/**
  * Задний фон прокручен до конца
  * @returns {boolean}
  */
@@ -59,7 +69,7 @@ function isHeroCenter(heroPos)
 }
 
 /**
- * Позиция героя максимально слева
+ * Минимальная позиция героя
  * @param heroPos
  * @returns {boolean}
  */
@@ -77,7 +87,7 @@ function isHeroPosCenter(heroPos)
 }
 
 /**
- * Позиция героя максимально справа
+ * Максимальная позиция героя
  * @param heroPos
  * @returns {boolean}
  */
@@ -134,11 +144,10 @@ function bgPos(v, a, b)
 function addMonster()
 {
     if (getBgPos() >= monstersPos[0]) {
-        let pos = monstersPos.shift();
-        $('#bg').append('<div class="monster"></div>');
-        $('.monster').css({left: screenWidth + pos});
+        let monsterPos = monstersPos.shift();
+        bg.append('<div class="monster"></div>');
+		$('.monster').css({left: screenWidth + monsterPos});
     }
-    /*return getMonsterPos() - 1;*/
 }
 
 /**
