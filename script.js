@@ -6,10 +6,12 @@ x = 2, // Количество пикселей, которое преодоле
 betweenMonsters = 500, // Число пикселей между монстрами
 bgWidth = 3000, // Длинна заднего фона
 screenWidth = 1000, // Длинна экрана
+heroPosMaxLeft = 0, // Максимальная позиция героя слева
 monstersPos = [], // Позиции монстров
 d = {}, // Состояние клавишь <- и ->
 diff, // Разница между длинной фона и экраном
-heroPosCenter; // Позиция центра экрана для героя
+heroPosCenter, // Позиция центра экрана для героя
+heroPosMaxRight; // Максимальная позиция героя справа
 
 /**
  * Получение позиции заднего фона
@@ -38,9 +40,42 @@ function isBgScrolled ()
 	return getBgPos() >= diff;
 }
 
+/**
+ * Герой находится в центре
+ * @param heroPos
+ * @returns {boolean}
+ */
 function isHeroCenter(heroPos)
 {
 	return heroPos >= heroPosCenter
+}
+
+/**
+ * Позиция героя максимально слева
+ * @param heroPos
+ * @returns {boolean}
+ */
+function isHeroPosMaxLeft(heroPos)
+{
+	return heroPos < heroPosMaxLeft;
+}
+
+/**
+ * Позиция героя в центре
+ */
+function isHeroPosCenter(heroPos)
+{
+	return isHeroCenter(heroPos) && !isBgScrolled();
+}
+
+/**
+ * Позиция героя максимально справа
+ * @param heroPos
+ * @returns {boolean}
+ */
+function isHeroPosMaxRight(heroPos)
+{
+	return heroPos > heroPosMaxRight;
 }
 
 /**
@@ -55,15 +90,13 @@ function heroPos(v, a, b)
     let newHeroPos = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
 	result;
 
-	if (newHeroPos < 0) { // Если позиция героя максимально слева, то герой не движется левее
-		result = 0;
-	} else if ( // Если позиция героя в середине экрана и задний фон не прокручен до конца, то герой стоит в центре
-        isHeroCenter(newHeroPos) && !isBgScrolled()
-	) {
+	if (isHeroPosMaxLeft(newHeroPos)) {
+		result = heroPosMaxLeft;
+	} else if (isHeroPosCenter(newHeroPos)) {
 		result = heroPosCenter;
-	} else if (newHeroPos > screen.width() - hero.width() - 50) { // Если позиция героя максимально справа, не двигаться правее
-		result = screen.width() - hero.width() - 50;
-	} else { // Движение героя в остальных случаях
+	} else if (isHeroPosMaxRight(newHeroPos)) {
+		result = heroPosMaxRight;
+	} else {
 		result = newHeroPos;
 	}
     return result;
@@ -122,7 +155,8 @@ bg.width(bgWidth);
 numberMonsters = parseInt(bgWidth / betweenMonsters);
 monstersPos = getMonstersPos();
 diff = bg.width() - screen.width();
-heroPosCenter = (screen.width() - hero.width()) / 2;
+heroPosMaxRight = screen.width() - hero.width();
+heroPosCenter = heroPosMaxRight / 2;
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
