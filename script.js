@@ -193,4 +193,9 @@ setInterval(function() {
 		}
 	});
 	addMonster();
+	$('.monster').css({
+        left: function() {
+            return parseInt($('.monster').css('left')) - 1;
+        }
+    });
 }, 20);
