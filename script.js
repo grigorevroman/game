@@ -32,12 +32,21 @@ function getHeroPos()
 }
 
 /**
+ * Получение Jq монстра
+ * @returns {jQuery|HTMLElement}
+ */
+function getMonsterJq()
+{
+	return $('.monster');
+}
+
+/**
  * Получение позиции монстра
  * @returns {number}
  */
 function getMonsterPos()
 {
-	return parseInt($('.monster').css('left'));
+	return parseInt(getMonsterJq().css('left'));
 }
 
 /**
@@ -192,7 +201,7 @@ setInterval(function() {
 		}
 	});
 	addMonster();
-	$('.monster').css({
+	getMonsterJq().css({
         left: function() {
             return getMonsterPos() - 1;
         }
