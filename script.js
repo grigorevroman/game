@@ -6,12 +6,12 @@ x = 2, // Количество пикселей, которое преодоле
 betweenMonsters = 500, // Число пикселей между монстрами
 bgWidth = 3000, // Длинна заднего фона
 screenWidth = 1000, // Длинна экрана
-heroPosMaxLeft = 0, // Максимальная позиция героя слева
+heroPosMin = 0, // Максимальная позиция героя слева
 monstersPos = [], // Позиции монстров
 d = {}, // Состояние клавишь <- и ->
 diff, // Разница между длинной фона и экраном
 heroPosCenter, // Позиция центра экрана для героя
-heroPosMaxRight; // Максимальная позиция героя справа
+heroPosMax; // Максимальная позиция героя справа
 
 /**
  * Получение позиции заднего фона
@@ -41,6 +41,14 @@ function isBgScrolled ()
 }
 
 /**
+ * Задний фон прокручивается
+ */
+function isBgScroll(heroPos)
+{
+	return isHeroCenter(heroPos) && !isBgScrolled()
+}
+
+/**
  * Герой находится в центре
  * @param heroPos
  * @returns {boolean}
@@ -55,9 +63,9 @@ function isHeroCenter(heroPos)
  * @param heroPos
  * @returns {boolean}
  */
-function isHeroPosMaxLeft(heroPos)
+function isHeroPosMin(heroPos)
 {
-	return heroPos < heroPosMaxLeft;
+	return heroPos < heroPosMin;
 }
 
 /**
@@ -73,9 +81,9 @@ function isHeroPosCenter(heroPos)
  * @param heroPos
  * @returns {boolean}
  */
-function isHeroPosMaxRight(heroPos)
+function isHeroPosMax(heroPos)
 {
-	return heroPos > heroPosMaxRight;
+	return heroPos > heroPosMax;
 }
 
 /**
@@ -90,33 +98,32 @@ function heroPos(v, a, b)
     let newHeroPos = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
 	result;
 
-	if (isHeroPosMaxLeft(newHeroPos)) {
-		result = heroPosMaxLeft;
+	if (isHeroPosMin(newHeroPos)) {
+		result = heroPosMin;
 	} else if (isHeroPosCenter(newHeroPos)) {
 		result = heroPosCenter;
-	} else if (isHeroPosMaxRight(newHeroPos)) {
-		result = heroPosMaxRight;
+	} else if (isHeroPosMax(newHeroPos)) {
+		result = heroPosMax;
 	} else {
 		result = newHeroPos;
 	}
     return result;
 }
 
-/* Перемещение заднего фона */
+/**
+ * Перемещение заднего фона
+ * @param v
+ * @param a
+ * @param b
+ * @returns {number}
+ */
 function bgPos(v, a, b)
 {
 	let newBgPos = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
 	result;
 
-	/* Если герой в середине экрана и задний фон не прокручен до конца, то прокручиваем его */
-	if (
-		isHeroCenter(getHeroPos()) && !isBgScrolled()
-	) {
+	if (isBgScroll(getHeroPos())) {
 		result = newBgPos;
-
-	/* Если задний фон прокручен до конца, то останавливаем его */
-	} else if (-newBgPos >= diff) {
-		result = -(diff);
 	}
 	return result;
 }
@@ -151,12 +158,12 @@ function getMonstersPos()
     return result;
 }
 
-bg.width(bgWidth);
-numberMonsters = parseInt(bgWidth / betweenMonsters);
-monstersPos = getMonstersPos();
-diff = bg.width() - screen.width();
-heroPosMaxRight = screen.width() - hero.width();
-heroPosCenter = heroPosMaxRight / 2;
+bg.width(bgWidth); // Длинна заднего фона
+numberMonsters = parseInt(bgWidth / betweenMonsters); // Количество монстров
+monstersPos = getMonstersPos(); // Позиции монстров
+diff = bg.width() - screen.width(); // Разность между длинной заднего фона и экрана
+heroPosMax = screen.width() - hero.width(); // Максимальная позиция героя
+heroPosCenter = heroPosMax / 2; // Позиция героя в центре
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
