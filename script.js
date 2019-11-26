@@ -2,7 +2,7 @@ let
 screen = $('#screen'), // Jq экран
 bg = $('#bg'), // Jq задний фон
 hero = $('#hero'), // Jq герой
-x = 3, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
+x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 betweenMonsters = 500, // Число пикселей между монстрами
 bgWidth = 3000, // Длинна заднего фона
 screenWidth = 1000, // Длинна экрана
@@ -30,6 +30,20 @@ function getHeroPos()
 }
 
 /**
+ * Задний фон прокручен до конца
+ * @returns {boolean}
+ */
+function isBgScrolled ()
+{
+	return getBgPos() >= diff;
+}
+
+function isHeroCenter(heroPos)
+{
+	return heroPos >= heroPosCenter
+}
+
+/**
  * Перемещение героя
  * @param v
  * @param a
@@ -44,8 +58,7 @@ function heroPos(v, a, b)
 	if (newHeroPos < 0) { // Если позиция героя максимально слева, то герой не движется левее
 		result = 0;
 	} else if ( // Если позиция героя в середине экрана и задний фон не прокручен до конца, то герой стоит в центре
-        newHeroPos >= heroPosCenter
-		&& getBgPos() < diff
+        isHeroCenter(newHeroPos) && !isBgScrolled()
 	) {
 		result = heroPosCenter;
 	} else if (newHeroPos > screen.width() - hero.width() - 50) { // Если позиция героя максимально справа, не двигаться правее
@@ -59,18 +72,17 @@ function heroPos(v, a, b)
 /* Перемещение заднего фона */
 function bgPos(v, a, b)
 {
-	var n = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
+	let newBgPos = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
 	result;
 
 	/* Если герой в середине экрана и задний фон не прокручен до конца, то прокручиваем его */
 	if (
-		getHeroPos() >= heroPosCenter
-		&& getBgPos() < diff
+		isHeroCenter(getHeroPos()) && !isBgScrolled()
 	) {
-		result = n;
+		result = newBgPos;
 
 	/* Если задний фон прокручен до конца, то останавливаем его */
-	} else if (-n >= diff) {
+	} else if (-newBgPos >= diff) {
 		result = -(diff);
 	}
 	return result;
@@ -96,8 +108,8 @@ function addMonster()
 function getMonstersPos()
 {
     let i = 0,
-        result = [],
-        pos = 0;
+    result = [],
+	pos = 0;
     while (i < numberMonsters) {
         result.push(pos);
         pos += betweenMonsters;
