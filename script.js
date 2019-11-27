@@ -11,7 +11,6 @@ monstersPos = [], // Позиции монстров
 d = {}, // Состояние клавишь <- и ->
 heroPosCenter, // Позиция центра для героя
 heroPosMax, // Максимальная позиция героя
-heroPosRelBg; // Позиция героя относительно заднего фона
 
 /**
  * Получение позиции заднего фона
@@ -161,7 +160,6 @@ numberMonsters = parseInt(bgWidth / betweenMonsters); // Количество м
 monstersPos = getMonstersPos(); // Позиции монстров
 heroPosMax = screen.width() - hero.width(); // Максимальная позиция героя
 heroPosCenter = heroPosMax / 2; // Позиция героя в центре
-heroPosRelBg = getHeroPos(); // Позиция героя относительно заднего фона
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
