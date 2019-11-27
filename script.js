@@ -11,7 +11,8 @@ monstersPos = [], // Позиции монстров
 d = {}, // Состояние клавишь <- и ->
 diff, // Разница между длинной фона и экрана
 heroPosCenter, // Позиция центра для героя
-heroPosMax; // Максимальная позиция героя
+heroPosMax, // Максимальная позиция героя
+heroPosRelBg; // Позиция героя относительно заднего фона
 
 /**
  * Получение позиции заднего фона
@@ -175,16 +176,33 @@ function getMonstersPos()
     return result;
 }
 
+/**
+ * Перемещение героя относительно заднего фона
+ * @param pos
+ * @param a
+ * @param b
+ * @returns {number}
+ */
+function heroPosRelativeBg(pos, a, b)
+{
+	return parseInt(pos, 10) - (d[a] ? x : 0) + (d[b] ? x : 0);
+	/**
+	 * TODO Добавить ограничения
+	 */
+}
+
 bg.width(bgWidth); // Длинна заднего фона
 numberMonsters = parseInt(bgWidth / betweenMonsters); // Количество монстров
 monstersPos = getMonstersPos(); // Позиции монстров
 diff = bg.width() - screen.width(); // Разность между длинной заднего фона и экрана
 heroPosMax = screen.width() - hero.width(); // Максимальная позиция героя
 heroPosCenter = heroPosMax / 2; // Позиция героя в центре
+heroPosRelBg = getHeroPos(); // Позиция героя относительно заднего фона
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
 });
+
 $(window).keyup(function(e) { 
 	d[e.which] = false; 
 });
@@ -206,4 +224,8 @@ setInterval(function() {
             return getMonsterPos() - 1;
         }
     });
+	heroPosRelBg = heroPosRelativeBg(heroPosRelBg, 37, 39);
+	/*if (heroPosRelBg + 100 >= getMonsterPos()) {
+		console.log('contact');
+	}*/
 }, 20);
