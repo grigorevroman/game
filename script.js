@@ -51,20 +51,11 @@ function getMonsterPos()
 }
 
 /**
- * Задний фон прокручен до конца
- * @returns {boolean}
- */
-function isBgScrolled ()
-{
-	return getBgPos() >= diff;
-}
-
-/**
  * Задний фон прокручивается
  */
 function isBgScroll(heroPos)
 {
-	return isHeroCenter(heroPos) && !isBgScrolled()
+	return isHeroCenter(heroPos);
 }
 
 /**
@@ -74,7 +65,7 @@ function isBgScroll(heroPos)
  */
 function isHeroCenter(heroPos)
 {
-	return heroPos >= heroPosCenter
+	return heroPos >= heroPosCenter && heroPos <= 3000 - 1000 + heroPosCenter;
 }
 
 /**
