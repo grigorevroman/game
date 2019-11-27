@@ -102,7 +102,7 @@ function isHeroPosCenter(heroPos)
  */
 function isHeroPosMax(heroPos)
 {
-	return heroPos > heroPosMax;
+	return heroPos > 2900;
 }
 
 /**
@@ -120,9 +120,9 @@ function heroPos(v, a, b)
 	if (isHeroPosMin(newHeroPos)) {
 		result = heroPosMin;
 	} else if (isHeroPosCenter(newHeroPos)) {
-		result = heroPosCenter;
+		result = newHeroPos;
 	} else if (isHeroPosMax(newHeroPos)) {
-		result = heroPosMax;
+		result = 2900;
 	} else {
 		result = newHeroPos;
 	}
