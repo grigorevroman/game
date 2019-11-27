@@ -88,14 +88,6 @@ function isHeroPosMin(heroPos)
 }
 
 /**
- * Позиция героя в центре
- */
-function isHeroPosCenter(heroPos)
-{
-	return isHeroCenter(heroPos) && !isBgScrolled();
-}
-
-/**
  * Максимальная позиция героя
  * @param heroPos
  * @returns {boolean}
@@ -119,8 +111,6 @@ function heroPos(v, a, b)
 
 	if (isHeroPosMin(newHeroPos)) {
 		result = heroPosMin;
-	} else if (isHeroPosCenter(newHeroPos)) {
-		result = newHeroPos;
 	} else if (isHeroPosMax(newHeroPos)) {
 		result = 2900;
 	} else {
