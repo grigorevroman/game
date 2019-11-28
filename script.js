@@ -21,15 +21,6 @@ function getBgPos()
 }
 
 /**
- * Получение позиции героя
- * @returns {number}
- */
-function getHeroPos() 
-{
-	return parseInt(hero.css('left'));
-}
-
-/**
  * Получение Jq монстра
  * @returns {jQuery|HTMLElement}
  */
@@ -72,12 +63,12 @@ function isHeroCenter(heroPos)
  * @param b
  * @returns {number}
  */
-function bgPos(v, a, b)
+function bgPos(v, a, b, heroObj)
 {
 	let newBgPos = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
 	result;
 
-	if (isBgScroll(getHeroPos())) {
+	if (isBgScroll(heroObj.getHeroPos())) {
 		result = newBgPos;
 	}
 	return result;
@@ -132,7 +123,7 @@ setInterval(function() {
 	heroObj.setHeroPos();
 	bg.css({
 		left: function(i, v) {
-			return bgPos(v, 39, 37);
+			return bgPos(v, 39, 37, heroObj);
 		}
 	});
 	addMonster();

@@ -20,6 +20,11 @@ class Hero
         return result;
     }
 
+    getHeroPos()
+    {
+        return parseInt(this.hero.css('left'));
+    }
+
     setHeroPos()
     {
         let oldHeroPos = this.hero.css('left'),
