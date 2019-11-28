@@ -4,12 +4,12 @@ bg = $('#bg'), // Jq задний фон
 hero = $('#hero'), // Jq герой
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 betweenMonsters = 500, // Число пикселей между монстрами
-heroPosMin = 0, // Минимальная позиция героя
 monstersPos = [], // Позиции монстров
 d = {}, // Состояние клавишь <- и ->
 heroPosCenterMin, // Позиция центра для героя
 heroPosCenterMax,
-heroPosMax; // Максимальная позиция героя
+heroPosMax, // Максимальная позиция героя
+heroObj = {};
 
 /**
  * Получение позиции заднего фона
@@ -63,48 +63,6 @@ function isBgScroll(heroPos)
 function isHeroCenter(heroPos)
 {
 	return heroPos >= heroPosCenterMin && heroPos <= heroPosCenterMax;
-}
-
-/**
- * Минимальная позиция героя
- * @param heroPos
- * @returns {boolean}
- */
-function isHeroPosMin(heroPos)
-{
-	return heroPos < heroPosMin;
-}
-
-/**
- * Максимальная позиция героя
- * @param heroPos
- * @returns {boolean}
- */
-function isHeroPosMax(heroPos)
-{
-	return heroPos > 2900;
-}
-
-/**
- * Перемещение героя
- * @param v
- * @param a
- * @param b
- * @returns {number}
- */
-function heroPos(v, a, b) 
-{
-    let newHeroPos = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
-	result;
-
-	if (isHeroPosMin(newHeroPos)) {
-		result = heroPosMin;
-	} else if (isHeroPosMax(newHeroPos)) {
-		result = 2900;
-	} else {
-		result = newHeroPos;
-	}
-    return result;
 }
 
 /**
@@ -168,12 +126,10 @@ $(window).keyup(function(e) {
 	d[e.which] = false; 
 });
 
+heroObj = new Hero();
+
 setInterval(function() {
-	hero.css({
-		left: function(i, v) {
-			return heroPos(v, 37, 39);
-		}
-	});
+	heroObj.setHeroPos();
 	bg.css({
 		left: function(i, v) {
 			return bgPos(v, 39, 37);
