@@ -4,12 +4,11 @@ bg = $('#bg'), // Jq задний фон
 hero = $('#hero'), // Jq герой
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 betweenMonsters = 500, // Число пикселей между монстрами
-bgWidth = 3000, // Длинна заднего фона
-screenWidth = 1000, // Длинна экрана
 heroPosMin = 0, // Минимальная позиция героя
 monstersPos = [], // Позиции монстров
 d = {}, // Состояние клавишь <- и ->
-heroPosCenter, // Позиция центра для героя
+heroPosCenterMin, // Позиция центра для героя
+heroPosCenterMax,
 heroPosMax; // Максимальная позиция героя
 
 /**
@@ -63,7 +62,7 @@ function isBgScroll(heroPos)
  */
 function isHeroCenter(heroPos)
 {
-	return heroPos >= heroPosCenter && heroPos <= 3000 - 1000 + heroPosCenter;
+	return heroPos >= heroPosCenterMin && heroPos <= heroPosCenterMax;
 }
 
 /**
@@ -134,7 +133,7 @@ function addMonster()
     if (getBgPos() >= monstersPos[0]) {
         let monsterPos = monstersPos.shift();
         bg.append('<div class="monster"></div>');
-		$('.monster').css({left: screenWidth + monsterPos});
+		$('.monster').css({left: screen.width() + monsterPos});
     }
 }
 
@@ -155,11 +154,11 @@ function getMonstersPos()
     return result;
 }
 
-bg.width(bgWidth); // Длинна заднего фона
-numberMonsters = parseInt(bgWidth / betweenMonsters); // Количество монстров
+numberMonsters = parseInt(bg.width() / betweenMonsters); // Количество монстров
 monstersPos = getMonstersPos(); // Позиции монстров
 heroPosMax = screen.width() - hero.width(); // Максимальная позиция героя
-heroPosCenter = heroPosMax / 2; // Позиция героя в центре
+heroPosCenterMin = heroPosMax / 2; // Позиция героя в центре
+heroPosCenterMax = bg.width() - screen.width() + heroPosCenterMin;
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
