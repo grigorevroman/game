@@ -6,13 +6,6 @@ class Hero
         this.heroPosMin = 0;
     }
 
-    setHeroPos()
-    {
-        let oldHeroPos = this.hero.css('left'),
-        newHeroPos = this.getNewHeroPos(oldHeroPos, 37, 39);
-        this.hero.css({left: newHeroPos});
-    }
-
     getNewHeroPos(oldHeroPos, leftButtonNumber, rightButtonNumber)
     {
         let newHeroPos = parseInt(oldHeroPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
@@ -25,6 +18,13 @@ class Hero
             result = newHeroPos;
         }
         return result;
+    }
+
+    setHeroPos()
+    {
+        let oldHeroPos = this.hero.css('left'),
+        newHeroPos = this.getNewHeroPos(oldHeroPos, 37, 39);
+        this.hero.css({left: newHeroPos});
     }
 
     isHeroPosMin(heroPos)
