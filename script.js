@@ -43,7 +43,7 @@ function getMonsterPos()
  */
 function isBgScroll(heroObj)
 {
-	return heroObj.isHeroCenter();
+	return heroObj.isHeroPosCenter();
 }
 
 /**
