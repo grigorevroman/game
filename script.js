@@ -41,19 +41,9 @@ function getMonsterPos()
 /**
  * Задний фон прокручивается
  */
-function isBgScroll(heroPos)
+function isBgScroll(heroPos, heroObj)
 {
-	return isHeroCenter(heroPos);
-}
-
-/**
- * Герой находится в центре
- * @param heroPos
- * @returns {boolean}
- */
-function isHeroCenter(heroPos)
-{
-	return heroPos >= heroPosCenterMin && heroPos <= heroPosCenterMax;
+	return heroObj.isHeroCenter(heroPos);
 }
 
 /**
@@ -68,7 +58,7 @@ function bgPos(v, a, b, heroObj)
 	let newBgPos = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0),
 	result;
 
-	if (isBgScroll(heroObj.getHeroPos())) {
+	if (isBgScroll(heroObj.getHeroPos(), heroObj)) {
 		result = newBgPos;
 	}
 	return result;

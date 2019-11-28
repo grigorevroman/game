@@ -41,4 +41,9 @@ class Hero
     {
         return heroPos > bg.width() - this.hero.width();
     }
+
+    isHeroCenter(heroPos)
+    {
+        return heroPos >= heroPosCenterMin && heroPos <= heroPosCenterMax;
+    }
 }
