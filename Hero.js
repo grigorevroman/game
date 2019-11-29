@@ -3,7 +3,6 @@ class Hero
     constructor()
     {
         this.hero = $('#hero');
-        this.heroPosMin = 0;
     }
 
     getNewHeroPos(oldHeroPos, leftButtonNumber, rightButtonNumber)
@@ -11,9 +10,9 @@ class Hero
         let newHeroPos = parseInt(oldHeroPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
         result;
         if (this.isHeroPosMin()) {
-            result = this.heroPosMin;
+            result = HERO_MIN_POS;
         } else if (this.isHeroPosMax()) {
-            result = bg.width() - this.hero.width();
+            result = HERO_MAX_POS;
         } else {
             result = newHeroPos;
         }
@@ -34,16 +33,16 @@ class Hero
 
     isHeroPosMin()
     {
-        return this.getHeroPos() < this.heroPosMin;
+        return this.getHeroPos() < HERO_MIN_POS;
     }
 
     isHeroPosMax()
     {
-        return this.getHeroPos() > bg.width() - this.hero.width();
+        return this.getHeroPos() > HERO_MAX_POS;
     }
 
     isHeroPosCenter()
     {
-        return this.getHeroPos() >= heroPosCenterMin && this.getHeroPos() <= heroPosCenterMax;
+        return this.getHeroPos() >= HERO_MIN_POS_CENTER && this.getHeroPos() <= HERO_MAX_POS_CENTER;
     }
 }

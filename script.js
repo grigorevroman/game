@@ -1,3 +1,12 @@
+const
+SCREEN_WIDTH = 1000,
+BG_WIDTH = 2000,
+HERO_WIDTH = 100,
+HERO_MIN_POS = 0,
+HERO_MAX_POS = BG_WIDTH - HERO_WIDTH,
+HERO_MIN_POS_CENTER = (SCREEN_WIDTH + HERO_WIDTH) / 2,
+HERO_MAX_POS_CENTER = BG_WIDTH - SCREEN_WIDTH + HERO_MIN_POS_CENTER;
+
 let
 screen = $('#screen'), // Jq экран
 bg = $('#bg'), // Jq задний фон
@@ -7,9 +16,8 @@ betweenMonsters = 500, // Число пикселей между монстра�
 monstersPos = [], // Позиции монстров
 d = {}, // Состояние клавишь <- и ->
 heroPosCenterMin, // Позиция центра для героя
-heroPosCenterMax,
-heroPosMax, // Максимальная позиция героя
-heroObj = {};
+heroObj = {},
+bgObj = {};
 
 /**
  * Получение позиции заднего фона
@@ -96,9 +104,6 @@ function getMonstersPos()
 
 numberMonsters = parseInt(bg.width() / betweenMonsters); // Количество монстров
 monstersPos = getMonstersPos(); // Позиции монстров
-heroPosMax = screen.width() - hero.width(); // Максимальная позиция героя
-heroPosCenterMin = heroPosMax / 2; // Позиция героя в центре
-heroPosCenterMax = bg.width() - screen.width() + heroPosCenterMin;
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
