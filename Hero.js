@@ -9,6 +9,7 @@ class Hero
     {
         let newHeroPos = parseInt(oldHeroPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
         result;
+
         if (this.isHeroPosMin()) {
             result = HERO_MIN_POS;
         } else if (this.isHeroPosMax()) {
@@ -28,6 +29,7 @@ class Hero
     {
         let oldHeroPos = this.hero.css('left'),
         newHeroPos = this.getNewHeroPos(oldHeroPos, 37, 39);
+
         this.hero.css({left: newHeroPos});
     }
 
