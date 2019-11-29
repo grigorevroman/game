@@ -4,18 +4,16 @@ BG_WIDTH = 2000,
 HERO_WIDTH = 100,
 HERO_MIN_POS = 0,
 HERO_MAX_POS = BG_WIDTH - HERO_WIDTH,
-HERO_MIN_POS_CENTER = (SCREEN_WIDTH + HERO_WIDTH) / 2,
+HERO_MIN_POS_CENTER = (SCREEN_WIDTH - HERO_WIDTH) / 2,
 HERO_MAX_POS_CENTER = BG_WIDTH - SCREEN_WIDTH + HERO_MIN_POS_CENTER;
 
 let
 screen = $('#screen'), // Jq экран
 bg = $('#bg'), // Jq задний фон
-hero = $('#hero'), // Jq герой
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 betweenMonsters = 500, // Число пикселей между монстрами
 monstersPos = [], // Позиции монстров
 d = {}, // Состояние клавишь <- и ->
-heroPosCenterMin, // Позиция центра для героя
 heroObj = {},
 bgObj = {};
 
