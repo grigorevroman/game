@@ -27,7 +27,7 @@ class Hero
 
     setHeroPos()
     {
-        let oldHeroPos = this.hero.css('left'),
+        let oldHeroPos = this.getHeroPos(),
         newHeroPos = this.getNewHeroPos(oldHeroPos, 37, 39);
 
         this.hero.css({left: newHeroPos});
