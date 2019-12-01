@@ -1,17 +1,17 @@
 const
-SCREEN_WIDTH = 1000,
-BG_WIDTH = 1100,
-HERO_WIDTH = 100,
-HERO_MIN_POS = 0,
-HERO_MAX_POS = BG_WIDTH - HERO_WIDTH,
-HERO_MIN_POS_CENTER = (SCREEN_WIDTH - HERO_WIDTH) / 2,
-HERO_MAX_POS_CENTER = BG_WIDTH - SCREEN_WIDTH + HERO_MIN_POS_CENTER;
+SCREEN_WIDTH = 1000, // Ширина экрана
+BG_WIDTH = 1100, // Ширина заднего фона
+HERO_WIDTH = 100, // Ширина героя
+HERO_MIN_POS = 0, // Минимальная позиция героя
+HERO_MAX_POS = BG_WIDTH - HERO_WIDTH, // Максимальная позиция героя
+HERO_MIN_POS_CENTER = (SCREEN_WIDTH - HERO_WIDTH) / 2, // Минимальная поциция героя в центре
+HERO_MAX_POS_CENTER = BG_WIDTH - SCREEN_WIDTH + HERO_MIN_POS_CENTER; // Максимальная позиция героя в центре
 
 let
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 d = {}, // Состояние клавишь <- и ->
-heroObj = {},
-bgObj = {};
+heroObj = {}, // Герой
+bgObj = {}; // Задний фон
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
