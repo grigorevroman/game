@@ -20,9 +20,9 @@ class Hero
         let newHeroPos = parseInt(oldHeroPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
         result;
 
-        if (this.isHeroPosMin()) {
+        if (this.isHeroPosMin(newHeroPos)) {
             result = HERO_MIN_POS;
-        } else if (this.isHeroPosMax()) {
+        } else if (this.isHeroPosMax(newHeroPos)) {
             result = HERO_MAX_POS;
         } else {
             result = newHeroPos;
@@ -52,20 +52,22 @@ class Hero
 
     /**
      * Герой в минимальной позиции
+     * @param newHeroPos
      * @returns {boolean}
      */
-    isHeroPosMin()
+    isHeroPosMin(newHeroPos)
     {
-        return this.getHeroPos() < HERO_MIN_POS;
+        return newHeroPos <= HERO_MIN_POS;
     }
 
     /**
      * Герой в максимальной позиции
+     * @param newHeroPos
      * @returns {boolean}
      */
-    isHeroPosMax()
+    isHeroPosMax(newHeroPos)
     {
-        return this.getHeroPos() > HERO_MAX_POS;
+        return newHeroPos >= HERO_MAX_POS;
     }
 
     /**
