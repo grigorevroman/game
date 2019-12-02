@@ -10,14 +10,14 @@ class Hero
 
     /**
      * Получить новую позицию героя
-     * @param oldHeroPos
+     * @param curHeroPos
      * @param leftButtonNumber
      * @param rightButtonNumber
      * @returns {number}
      */
-    getNewHeroPos(oldHeroPos, leftButtonNumber, rightButtonNumber)
+    getNewHeroPos(curHeroPos, leftButtonNumber, rightButtonNumber)
     {
-        let newHeroPos = parseInt(oldHeroPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
+        let newHeroPos = parseInt(curHeroPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
         result;
 
         if (this.isHeroPosMin(newHeroPos)) {
@@ -44,8 +44,8 @@ class Hero
      */
     setHeroPos()
     {
-        let oldHeroPos = this.getHeroPos(),
-        newHeroPos = this.getNewHeroPos(oldHeroPos, 37, 39);
+        let curHeroPos = this.getHeroPos(),
+        newHeroPos = this.getNewHeroPos(curHeroPos, 37, 39);
 
         this.hero.css({left: newHeroPos});
     }

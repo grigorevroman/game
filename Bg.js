@@ -12,14 +12,14 @@ class Bg
 
     /**
      * Получить новую позицию заднего фона
-     * @param oldBgPos
+     * @param curBgPos
      * @param leftButtonNumber
      * @param rightButtonNumber
      * @returns {number}
      */
-    getNewBgPos(oldBgPos, leftButtonNumber, rightButtonNumber)
+    getNewBgPos(curBgPos, leftButtonNumber, rightButtonNumber)
     {
-        let newBgPos = parseInt(oldBgPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
+        let newBgPos = parseInt(curBgPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
         result;
 
         if (this.isBgScroll()) {
@@ -43,8 +43,8 @@ class Bg
     setBgPos()
     {
         let
-        oldBgPos = this.getBgPos(),
-        newBgPos = this.getNewBgPos(oldBgPos, 39, 37);
+        curBgPos = this.getBgPos(),
+        newBgPos = this.getNewBgPos(curBgPos, 39, 37);
 
         this.bg.css({left: newBgPos});
     }
