@@ -19,7 +19,8 @@ class Bg
      */
     getNewBgPos(curBgPos, leftButtonNumber, rightButtonNumber)
     {
-        let newBgPos = parseInt(curBgPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
+        let 
+        newBgPos = parseInt(curBgPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
         result;
 		
 		if (newBgPos > 0) {
