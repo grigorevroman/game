@@ -21,10 +21,14 @@ class Bg
     {
         let newBgPos = parseInt(curBgPos) - (d[leftButtonNumber] ? x : 0) + (d[rightButtonNumber] ? x : 0),
         result;
-
-        if (this.isBgScroll()) {
-            result = newBgPos;
-        }
+		
+		if (newBgPos > 0) {
+			result = 0;
+		} else if (this.heroObj.getHeroPos() > HERO_MAX_POS_CENTER) {
+			result = -(BG_WIDTH - SCREEN_WIDTH);
+		} else if (this.isBgScroll()) {
+			result = newBgPos;
+		}
         return result;
     }
 
