@@ -6,6 +6,7 @@ class Hero
     constructor()
     {
         this.hero = $('#hero');
+		this.hero.width(HERO_WIDTH);
     }
 
     /**

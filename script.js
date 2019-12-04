@@ -13,6 +13,8 @@ d = {}, // Состояние клавишь <- и ->
 heroObj = {}, // Герой
 bgObj = {}; // Задний фон
 
+$('#screen').width(SCREEN_WIDTH);
+
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
 });

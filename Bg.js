@@ -7,6 +7,7 @@ class Bg
     constructor(heroObj)
     {
         this.bg = $('#bg');
+		this.bg.width(BG_WIDTH);
         this.heroObj = heroObj;
     }
 
