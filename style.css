@@ -23,3 +23,10 @@
     left: 50px;
     height: 150px;
 }
+.monster {
+	width: 100px;
+	height: 150px;
+	outline: 1px dotted black;
+	position: absolute;
+	top: 125px;
+}
