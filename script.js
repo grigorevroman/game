@@ -7,7 +7,8 @@ HERO_MAX_POS = BG_WIDTH - HERO_WIDTH, // Максимальная позиция
 HERO_MIN_POS_CENTER = (SCREEN_WIDTH - HERO_WIDTH) / 2, // Минимальная поциция героя в центре
 HERO_MAX_POS_CENTER = BG_WIDTH - SCREEN_WIDTH + HERO_MIN_POS_CENTER, // Максимальная позиция героя в центре
 MONSTER_WIDTH = 100,
-START_MONSTER_FIELD = [SCREEN_WIDTH, BG_WIDTH];
+START_MONSTER_FIELD = [SCREEN_WIDTH, BG_WIDTH],
+HERO_HEALTH = 100;
 
 let
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
@@ -105,7 +106,14 @@ setInterval(function() {
         heroObj.setHeroPos($('#hero').css({
             left: heroObj.getHeroPos() - 5
         }));
-        console.log(-1);
+        heroObj.setHeroHealth(heroObj.getHeroHealth() - 5);
     }
+
+    if (heroObj.getHeroHealth() <= 0) {
+        $('#health').hide();
+        $('#hero').fadeOut(500);
+    }
+    $('#health').width(heroObj.getHeroHealth());
+
 
 }, 20);

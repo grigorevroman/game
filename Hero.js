@@ -7,6 +7,7 @@ class Hero
     {
         this.hero = $('#hero');
 		this.hero.width(HERO_WIDTH);
+		this.health = HERO_HEALTH;
     }
 
     /**
@@ -79,5 +80,15 @@ class Hero
     isHeroPosCenter()
     {
         return this.getHeroPos() >= HERO_MIN_POS_CENTER && this.getHeroPos() <= HERO_MAX_POS_CENTER;
+    }
+
+    getHeroHealth()
+    {
+        return this.health;
+    }
+
+    setHeroHealth(health)
+    {
+        this.health = health;
     }
 }
