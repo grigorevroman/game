@@ -10,7 +10,7 @@ MONSTER_WIDTH = 100,
 START_MONSTER_FIELD = [SCREEN_WIDTH, BG_WIDTH];
 
 let
-x = 5, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
+x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 d = {}, // Состояние клавишь <- и ->
 heroObj = {}, // Герой
 bgObj = {}; // Задний фон
@@ -20,7 +20,7 @@ function getMonsterPoss(startMonsterField)
     let monsterFields = [startMonsterField];
     let monsterPoss = [];
     let i = 1;
-    while (i <= 10) {
+    while (i <= 5) {
         let monsterFieldsNum = monsterFields.length;
         if (monsterFieldsNum > 0) {
             let currentFieldNum = Math.floor(Math.random() * (monsterFieldsNum - 1 + 1)) + 1;
@@ -86,4 +86,12 @@ addMonsters(monsterPoss, bgObj);
 setInterval(function() {
 	heroObj.setHeroPos();
 	bgObj.setBgPos();
+
+    $('.monster').each(function() {
+        let pos = parseInt($(this).css('left'));
+        $(this).css({
+            left: pos - 1
+        });
+    });
+
 }, 20);
