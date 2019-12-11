@@ -94,4 +94,18 @@ setInterval(function() {
         });
     });
 
+    let minPosMonster = 10000;
+    $('.monster').each(function() {
+        if (minPosMonster > parseInt($(this).css('left'))) {
+            minPosMonster = parseInt($(this).css('left'));
+        }
+    });
+
+    if (heroObj.getHeroPos() + HERO_WIDTH >= minPosMonster) {
+        heroObj.setHeroPos($('#hero').css({
+            left: heroObj.getHeroPos() - 5
+        }));
+        console.log(-1);
+    }
+
 }, 20);
