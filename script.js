@@ -103,10 +103,10 @@ setInterval(function() {
     });
 
     if (heroObj.getHeroPos() + HERO_WIDTH >= minPosMonster) {
-        heroObj.setHeroPos($('#hero').css({
+        /*heroObj.setHeroPos($('#hero').css({
             left: heroObj.getHeroPos() - 5
-        }));
-        heroObj.setHeroHealth(heroObj.getHeroHealth() - 5);
+        }));*/
+        heroObj.setHeroHealth(heroObj.getHeroHealth() - 1);
     }
 
     if (heroObj.getHeroHealth() <= 0) {
