@@ -91,4 +91,16 @@ class Hero
     {
         this.health = health;
     }
+
+    shootArrow()
+    {
+        if (d[49]) {
+            if ($('.arrow').length === 0) {
+                bgObj.bg.append('<div class="arrow"></div>');
+                $('.arrow').css({
+                    left: heroObj.getHeroPos()
+                });
+            }
+        }
+    }
 }

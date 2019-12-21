@@ -42,15 +42,7 @@ setInterval(function()
 
 	heroObj.setHeroPos();
 	bgObj.setBgPos();
-
-    if (d[49]) {
-        if ($('.arrow').length === 0) {
-            bgObj.bg.append('<div class="arrow"></div>');
-            $('.arrow').css({
-                left: heroObj.getHeroPos()
-            });
-        }
-    }
+	heroObj.shootArrow();
 
     let arrowPos = parseInt($('.arrow').css('left'));
     $('.arrow').css({
