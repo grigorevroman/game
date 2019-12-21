@@ -13,13 +13,9 @@ HERO_HEALTH = 100;
 let
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 d = {}, // Состояние клавишь <- и ->
-heroObj = {}, // Герой
-bgObj = {}, // Задний фон
 pause = false;
 
 $('#screen').width(SCREEN_WIDTH);
-let monstersObj = new Monsters();
-let monsterPoss = monstersObj.getMonsterPoss(START_MONSTER_FIELD);
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
@@ -29,9 +25,10 @@ $(window).keyup(function(e) {
 	d[e.which] = false; 
 });
 
-heroObj = new Hero();
-bgObj = new Bg(heroObj);
-
+let heroObj = new Hero();
+let bgObj = new Bg(heroObj);
+let monstersObj = new Monsters();
+let monsterPoss = monstersObj.getMonsterPoss(START_MONSTER_FIELD);
 monstersObj.addMonsters(monsterPoss, bgObj);
 
 setInterval(function() {
