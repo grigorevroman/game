@@ -1,5 +1,10 @@
 class Monsters
 {
+    constructor(bgObj)
+    {
+        this.addMonsters(this.getMonsterPoss(), bgObj);
+    }
+
     getMonsterPoss()
     {
         let monsterFields = [START_MONSTER_FIELD];
