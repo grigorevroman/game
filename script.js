@@ -98,7 +98,6 @@ setInterval(function() {
     }
 
     let arrowPos = parseInt($('.arrow').css('left'));
-    console.log(arrowPos);
     $('.arrow').css({
         left: (arrowPos + 10)
     });
@@ -108,6 +107,9 @@ setInterval(function() {
         $(this).css({
             left: pos - 1
         });
+        if (parseInt($('.arrow').css('left')) >= pos) {
+            $('.arrow').remove();
+        }
     });
 
     let minPosMonster = 10000;
