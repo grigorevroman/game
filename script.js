@@ -32,8 +32,8 @@ let monsterPoss = monstersObj.getMonsterPoss(START_MONSTER_FIELD);
 monstersObj.addMonsters(monsterPoss, bgObj);
 
 setInterval(function() {
-    if (d[27] == true) {
-        if (pause == false) {
+    if (d[27] === true) {
+        if (pause === false) {
             pause = true;
         } else {
             pause = false;
