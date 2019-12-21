@@ -28,7 +28,7 @@ $(window).keyup(function(e) {
 let heroObj = new Hero();
 let bgObj = new Bg(heroObj);
 let monstersObj = new Monsters();
-let monsterPoss = monstersObj.getMonsterPoss(START_MONSTER_FIELD);
+let monsterPoss = monstersObj.getMonsterPoss();
 monstersObj.addMonsters(monsterPoss, bgObj);
 
 setInterval(function() {
