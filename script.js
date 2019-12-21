@@ -88,6 +88,12 @@ setInterval(function() {
 	heroObj.setHeroPos();
 	bgObj.setBgPos();
 
+    if (d[49] == true) {
+        if ($('.arrow').length === 0) {
+            heroObj.hero.append('<div class="arrow"></div>');
+        }
+    }
+
     $('.monster').each(function() {
         let pos = parseInt($(this).css('left'));
         $(this).css({
@@ -114,6 +120,5 @@ setInterval(function() {
         $('#hero').fadeOut(500);
     }
     $('#health').width(heroObj.getHeroHealth());
-
 
 }, 20);

@@ -41,3 +41,10 @@
 	left: 20px;
 	background-color: green;
 }
+.arrow {
+    position: absolute;
+    width: 100px;
+    height: 5px;
+    outline: 1px solid black;
+    top: 50px;
+}
