@@ -14,7 +14,8 @@ let
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 d = {}, // Состояние клавишь <- и ->
 heroObj = {}, // Герой
-bgObj = {}; // Задний фон
+bgObj = {}, // Задний фон
+pause = false;
 
 function getMonsterPoss(startMonsterField)
 {
@@ -87,6 +88,22 @@ bgObj = new Bg(heroObj);
 addMonsters(monsterPoss, bgObj);
 
 setInterval(function() {
+    if (d[27] == true) {
+        if (pause == false) {
+            pause = true;
+        } else {
+            pause = false;
+        }
+    }
+    console.log(pause);
+}, 100);
+
+setInterval(function() {
+
+    if (pause == true) {
+        return;
+    }
+
 	heroObj.setHeroPos();
 	bgObj.setBgPos();
 
