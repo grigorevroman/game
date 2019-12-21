@@ -1,8 +1,8 @@
 class Monsters
 {
-    getMonsterPoss(startMonsterField)
+    getMonsterPoss()
     {
-        let monsterFields = [startMonsterField];
+        let monsterFields = [START_MONSTER_FIELD];
         let monsterPoss = [];
         let i = 1;
         while (i <= 5) {
