@@ -32,21 +32,21 @@ let monsterPoss = monstersObj.getMonsterPoss(START_MONSTER_FIELD);
 monstersObj.addMonsters(monsterPoss, bgObj);
 
 setInterval(function() {
-    if (d[27] === true) {
+    if (d[27]) {
         pause = !pause;
     }
 }, 100);
 
-setInterval(function() {
-
-    if (pause == true) {
+setInterval(function()
+{
+    if (pause) {
         return;
     }
 
 	heroObj.setHeroPos();
 	bgObj.setBgPos();
 
-    if (d[49] == true) {
+    if (d[49]) {
         if ($('.arrow').length === 0) {
             bgObj.bg.append('<div class="arrow"></div>');
             $('.arrow').css({
@@ -83,9 +83,6 @@ setInterval(function() {
     });
 
     if (heroObj.getHeroPos() + HERO_WIDTH >= minPosMonster) {
-        /*heroObj.setHeroPos($('#hero').css({
-            left: heroObj.getHeroPos() - 5
-        }));*/
         heroObj.setHeroHealth(heroObj.getHeroHealth() - 1);
     }
 
