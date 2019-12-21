@@ -48,3 +48,10 @@
     outline: 1px solid black;
     top: 180px;
 }
+.monster-width {
+	width: 100px;
+	height: 5px;
+	background-color: red;
+	position: absolute;
+	top: -15px;
+}

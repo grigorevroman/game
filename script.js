@@ -60,7 +60,9 @@ function addMonsters(monsterPoss)
     let monstersNum = monsterPoss.length;
     let i = 1;
     while (i <= monstersNum) {
-        bgObj.bg.append('<div class="monster monster-' + i + '"><div>');
+        bgObj.bg.append('<div class="monster monster-' + i + '">' +
+            '<div class="monster-width monster-width-' + i + '"></div>' +
+        '<div>');
         $('.monster-' + i).css({
             left: monsterPoss[i - 1]
         });
@@ -109,6 +111,11 @@ setInterval(function() {
         });
         if (parseInt($('.arrow').css('left')) >= pos) {
             $('.arrow').remove();
+            let width = parseInt($(this).find('.monster-width').width());
+            $(this).find('.monster-width').width(width - 25);
+            if (parseInt($(this).find('.monster-width').width()) <= 0) {
+                $(this).remove();
+            }
         }
     });
 
