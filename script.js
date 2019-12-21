@@ -44,11 +44,6 @@ setInterval(function()
 	bgObj.setBgPos();
 	heroObj.shootArrow();
 
-    let arrowPos = parseInt($('.arrow').css('left'));
-    $('.arrow').css({
-        left: (arrowPos + 10)
-    });
-
     $('.monster').each(function() {
         let pos = parseInt($(this).css('left'));
         $(this).css({

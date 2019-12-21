@@ -102,5 +102,9 @@ class Hero
                 });
             }
         }
+        let arrowPos = parseInt($('.arrow').css('left'));
+        $('.arrow').css({
+            left: (arrowPos + 10)
+        });
     }
 }
