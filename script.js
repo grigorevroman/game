@@ -33,13 +33,8 @@ monstersObj.addMonsters(monsterPoss, bgObj);
 
 setInterval(function() {
     if (d[27] === true) {
-        if (pause === false) {
-            pause = true;
-        } else {
-            pause = false;
-        }
+        pause = !pause;
     }
-    console.log(pause);
 }, 100);
 
 setInterval(function() {
