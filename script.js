@@ -15,8 +15,6 @@ x = 2, // Количество пикселей, которое преодоле
 d = {}, // Состояние клавишь <- и ->
 pause = false; // Пауза
 
-$('#screen').width(SCREEN_WIDTH);
-
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
 });
@@ -27,6 +25,7 @@ $(window).keyup(function(e) {
 
 let heroObj = new Hero();
 let bgObj = new Bg(heroObj);
+new Screen();
 new Monsters(bgObj);
 
 setInterval(function() {
