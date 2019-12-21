@@ -90,9 +90,18 @@ setInterval(function() {
 
     if (d[49] == true) {
         if ($('.arrow').length === 0) {
-            heroObj.hero.append('<div class="arrow"></div>');
+            bgObj.bg.append('<div class="arrow"></div>');
+            $('.arrow').css({
+                left: heroObj.getHeroPos()
+            });
         }
     }
+
+    let arrowPos = parseInt($('.arrow').css('left'));
+    console.log(arrowPos);
+    $('.arrow').css({
+        left: (arrowPos + 10)
+    });
 
     $('.monster').each(function() {
         let pos = parseInt($(this).css('left'));
