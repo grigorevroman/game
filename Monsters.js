@@ -47,4 +47,9 @@ class Monsters
             i++;
         }
     }
+
+    getMonsters()
+    {
+        return $('.monster');
+    }
 }

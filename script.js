@@ -26,7 +26,7 @@ $(window).keyup(function(e) {
 let heroObj = new Hero();
 let bgObj = new Bg(heroObj);
 new Screen();
-new Monsters(bgObj);
+let monstersObj = new Monsters(bgObj);
 let arrowObj = new Arrow();
 
 setPause();
@@ -41,7 +41,7 @@ setInterval(function()
 	bgObj.setBgPos();
 	heroObj.shootArrow();
 
-    $('.monster').each(function() {
+    monstersObj.getMonsters().each(function() {
         let pos = parseInt($(this).css('left'));
         $(this).css({
             left: pos - 1
