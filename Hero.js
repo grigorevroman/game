@@ -8,6 +8,7 @@ class Hero
         this.hero = $('#hero');
 		this.hero.width(HERO_WIDTH);
 		this.health = HERO_HEALTH;
+		this.healthJq = $('#health');
     }
 
     /**

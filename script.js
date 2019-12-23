@@ -27,12 +27,9 @@ let heroObj = new Hero();
 let bgObj = new Bg(heroObj);
 new Screen();
 new Monsters(bgObj);
+let arrowObj = new Arrow();
 
-setInterval(function() {
-    if (d[27]) {
-        pause = !pause;
-    }
-}, 100);
+setPause();
 
 setInterval(function()
 {
@@ -71,9 +68,9 @@ setInterval(function()
     }
 
     if (heroObj.getHeroHealth() <= 0) {
-        $('#health').hide();
+        heroObj.healthJq.hide();
         $('#hero').fadeOut(500);
     }
-    $('#health').width(heroObj.getHeroHealth());
+    heroObj.healthJq.width(heroObj.getHeroHealth());
 
 }, 20);

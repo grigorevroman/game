@@ -8,3 +8,12 @@ function arrayValues(input)
     }
     return tmp_arr;
 }
+
+function setPause()
+{
+    setInterval(function() {
+        if (d[27]) {
+            pause = !pause;
+        }
+    }, 100);
+}
