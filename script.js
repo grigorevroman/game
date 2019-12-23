@@ -46,8 +46,9 @@ setInterval(function()
         $(this).css({
             left: pos - 1
         });
-        if (parseInt($('.arrow').css('left')) >= pos) {
-            $('.arrow').remove();
+        let arrowObj = new Arrow();
+        if (parseInt(arrowObj.arrow.css('left')) >= pos) {
+            arrowObj.arrow.remove();
             let width = parseInt($(this).find('.monster-width').width());
             $(this).find('.monster-width').width(width - 25);
             if (parseInt($(this).find('.monster-width').width()) <= 0) {
