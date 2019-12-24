@@ -11,9 +11,10 @@ function arrayValues(input)
 
 function setPause()
 {
-    setInterval(function() {
-        if (d[27]) {
-            pause = !pause;
-        }
-    }, 100);
+	$('body').keydown(function(event) {
+		if (event.which == 27) {
+			event.preventDefault();
+			pause = !pause;
+		}
+	});
 }
