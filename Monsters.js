@@ -1,10 +1,18 @@
 class Monsters
 {
+    /**
+     * Инициализация
+     * @param bgObj
+     */
     constructor(bgObj)
     {
         this.addMonsters(this.getMonsterPoss(), bgObj);
     }
 
+    /**
+     * Расчет позиций монстров
+     * @returns {Array}
+     */
     getMonsterPoss()
     {
         let monsterFields = [START_MONSTER_FIELD];
@@ -33,6 +41,10 @@ class Monsters
         return monsterPoss;
     }
 
+    /**
+     * Добавление монстров
+     * @param monsterPoss
+     */
     addMonsters(monsterPoss)
     {
         let monstersNum = monsterPoss.length;
@@ -48,6 +60,10 @@ class Monsters
         }
     }
 
+    /**
+     * Получить монстров
+     * @returns {jQuery|HTMLElement}
+     */
     getMonsters()
     {
         return $('.monster');

@@ -1,5 +1,8 @@
 class Screen
 {
+    /**
+     * Инициализация
+     */
     constructor()
     {
         this.screen = $('#screen');

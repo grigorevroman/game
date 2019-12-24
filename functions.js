@@ -9,6 +9,9 @@ function arrayValues(input)
     return tmp_arr;
 }
 
+/**
+ * Изменить состояние паузы
+ */
 function setPause()
 {
 	$('body').keydown(function(event) {

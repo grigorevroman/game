@@ -83,16 +83,27 @@ class Hero
         return this.getHeroPos() >= HERO_MIN_POS_CENTER && this.getHeroPos() <= HERO_MAX_POS_CENTER;
     }
 
+    /**
+     * Получить здоровье героя
+     * @returns {*}
+     */
     getHeroHealth()
     {
         return this.health;
     }
 
+    /**
+     * Задать здоровье героя
+     * @param health
+     */
     setHeroHealth(health)
     {
         this.health = health;
     }
 
+    /**
+     * Стрельба героя
+     */
     shootArrow()
     {
         if (d[49]) {
