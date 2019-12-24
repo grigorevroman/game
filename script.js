@@ -13,7 +13,8 @@ HERO_HEALTH = 100;
 let
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 d = {}, // Состояние клавишь <- и ->
-pause = false; // Пауза
+pause = false, // Пауза
+end = false;
 
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
@@ -33,6 +34,11 @@ setPause();
 
 setInterval(function()
 {
+    if (end) {
+        $('#pause').fadeIn(100);
+        return;
+    }
+
     if (pause) {
         $('#pause').fadeIn(100);
         return;
@@ -74,6 +80,7 @@ setInterval(function()
     if (heroObj.getHeroHealth() <= 0) {
         heroObj.healthJq.hide();
         $('#hero').fadeOut(500);
+        end = true;
     }
     heroObj.healthJq.width(heroObj.getHeroHealth());
 
