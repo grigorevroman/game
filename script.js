@@ -34,7 +34,10 @@ setPause();
 setInterval(function()
 {
     if (pause) {
+        $('#pause').fadeIn(100);
         return;
+    } else {
+        $('#pause').fadeOut(100);
     }
 
 	heroObj.setHeroPos();

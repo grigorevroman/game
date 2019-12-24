@@ -7,6 +7,15 @@
 	position: relative;
 	overflow: hidden;
 }
+#pause {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	position: relative;
+	z-index: 2;
+	opacity: 50%;
+	display: none;
+}
 #bg {
 	height: 400px;
 	outline: 1px dotted black;
