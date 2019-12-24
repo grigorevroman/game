@@ -14,31 +14,49 @@ let
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 d = {}, // Состояние клавишь <- и ->
 pause = false, // Пауза
-end = false;
+end = false; // Гибель героя
 
+/**
+ * Зажатие клавишь
+ */
 $(window).keydown(function(e) { 
 	d[e.which] = true; 
 });
 
+/**
+ * Отжатие клавишь
+ */
 $(window).keyup(function(e) { 
 	d[e.which] = false; 
 });
 
+/**
+ * Инициальзация объектов
+ */
 let heroObj = new Hero();
 let bgObj = new Bg(heroObj);
 new Screen();
 let monstersObj = new Monsters(bgObj);
 let arrowObj = new Arrow();
 
+/**
+ * Пауза
+ */
 setPause();
 
 setInterval(function()
 {
+    /**
+     * Гибель героя
+     */
     if (end) {
         $('#pause').fadeIn(100);
         return;
     }
 
+    /**
+     * Пауза
+     */
     if (pause) {
         $('#pause').fadeIn(100);
         return;
@@ -46,10 +64,24 @@ setInterval(function()
         $('#pause').fadeOut(100);
     }
 
+    /**
+     * Новая позиция героя
+     */
 	heroObj.setHeroPos();
+
+    /**
+     * Новая позиция заднего фона
+     */
 	bgObj.setBgPos();
+
+    /**
+     * Стрельба героя
+     */
 	heroObj.shootArrow();
 
+    /**
+     * Манипуляции с монстрами
+     */
     monstersObj.getMonsters().each(function() {
         let pos = parseInt($(this).css('left'));
         $(this).css({
@@ -66,6 +98,9 @@ setInterval(function()
         }
     });
 
+    /**
+     * Определение ближайшего монстра к герою
+     */
     let minPosMonster = 10000;
     $('.monster').each(function() {
         if (minPosMonster > parseInt($(this).css('left'))) {
@@ -73,15 +108,25 @@ setInterval(function()
         }
     });
 
+    /**
+     * Уменьшение здоровья героя при столкновении с монстром
+     */
     if (heroObj.getHeroPos() + HERO_WIDTH >= minPosMonster) {
         heroObj.setHeroHealth(heroObj.getHeroHealth() - 1);
     }
 
+    /**
+     * Гибель героя
+     */
     if (heroObj.getHeroHealth() <= 0) {
         heroObj.healthJq.hide();
         $('#hero').fadeOut(500);
         end = true;
     }
+
+    /**
+     * Изменение линии жизни героя
+     */
     heroObj.healthJq.width(heroObj.getHeroHealth());
 
 }, 20);
