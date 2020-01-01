@@ -27,6 +27,7 @@ class Hero
             result = HERO_MIN_POS;
         } else if (this.isHeroPosMax(newHeroPos)) {
             result = HERO_MAX_POS;
+            location.reload();
         } else {
             result = newHeroPos;
         }
