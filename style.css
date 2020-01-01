@@ -14,7 +14,6 @@
 	position: relative;
 	z-index: 2;
 	opacity: 50%;
-	display: none;
 }
 #bg {
 	height: 400px;
@@ -78,6 +77,6 @@
 }
 #menu {
 	position: absolute;
-	z-index: 2;
+	z-index: 3;
 	background: white;
 }
