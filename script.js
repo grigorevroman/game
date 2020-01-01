@@ -10,6 +10,9 @@ MONSTER_WIDTH = 100,
 START_MONSTER_FIELD = [SCREEN_WIDTH, BG_WIDTH],
 HERO_HEALTH = 100;
 
+/**
+ * Инициализация базовой верстки
+ */
 init();
 
 let
@@ -33,6 +36,9 @@ let bgObj = new Bg(heroObj);
 new Screen();
 let monstersObj = new Monsters(bgObj);
 
+/**
+ * Ввод имени игрока
+ */
 userNameJq.keyup(function() {
     userName = userNameJq.val();
     if (userName != '') {
@@ -77,12 +83,20 @@ startJq.click(function() {
 
 function game()
 {
+    /**
+     * Таймер
+     */
     timer();
 
     /**
      * Пауза
      */
     setPause();
+
+    /**
+     * Восстановление здоровья героя
+     */
+    healthRecovery();
 
     setInterval(function()
     {

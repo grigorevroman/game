@@ -68,3 +68,22 @@ function timer()
         $('#timer').html(time[0] + ':' + time[1]);
     }, 1000);
 }
+
+function healthRecovery()
+{
+    setInterval(function() {
+        if (pause) {
+            return;
+        }
+        let health = parseInt(heroObj.healthJq.width());
+        if (health < 100 && health > 0) {
+            health = health + 2;
+            if (health > 100) {
+                health = 100;
+            }
+            $('#health').width(health);
+            heroObj.healthJq.width(health);
+            heroObj.health = health;
+        }
+    }, 1000);
+}
