@@ -44,3 +44,24 @@ function init()
         '</div>'
     );
 }
+
+function timer()
+{
+    setInterval(function() {
+        let timer = $('#timer').html();
+        let time = timer.split(':');
+        time[1] = parseInt(time[1]) + 1;
+        if (time[1] <= 9) {
+            time[1] = '0' + (time[1]).toString();
+        }
+        if (time[1] == 60) {
+            time[1] = '00';
+            time[0] = parseInt(time[0]) + 1;
+            if (time[0] <= 9) {
+                time[0] = '0' + (time[0]).toString();
+            }
+        }
+        $('#timer').html(time[0] + ':' + time[1]);
+        console.log(time);
+    }, 1000);
+}

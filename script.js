@@ -77,9 +77,7 @@ startJq.click(function() {
 
 function game()
 {
-    setInterval(function() {
-        console.log(1);
-    }, 1000);
+    timer();
 
     /**
      * Пауза
