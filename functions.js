@@ -25,6 +25,15 @@ function setPause()
 function init()
 {
     $('#screen').html(
+        '<div id="menu">' +
+            '<div>Введите имя:</div>' +
+            '<div>' +
+                '<input id="user-name">' +
+            '</div>' +
+            '<div>' +
+                '<button id="start" disabled="disabled">Начать</button>' +
+            '</div>' +
+        '</div>' +
         '<div id="pause"></div>' +
         '<div id="health"></div>' +
         '<div id="user">Имя игрока</div>' +

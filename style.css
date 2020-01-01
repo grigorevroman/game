@@ -76,3 +76,8 @@
 	top: 55px;
 	left: 20px;
 }
+#menu {
+	position: absolute;
+	z-index: 2;
+	background: white;
+}
