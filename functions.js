@@ -62,6 +62,5 @@ function timer()
             }
         }
         $('#timer').html(time[0] + ':' + time[1]);
-        console.log(time);
     }, 1000);
 }
