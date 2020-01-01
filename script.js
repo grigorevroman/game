@@ -39,94 +39,99 @@ new Screen();
 let monstersObj = new Monsters(bgObj);
 let arrowObj = new Arrow();
 
-/**
- * Пауза
- */
-setPause();
-
-setInterval(function()
+function game()
 {
-    /**
-     * Гибель героя
-     */
-    if (end) {
-        $('#pause').fadeIn(100);
-        return;
-    }
-
     /**
      * Пауза
      */
-    if (pause) {
-        $('#pause').fadeIn(100);
-        return;
-    } else {
-        $('#pause').fadeOut(100);
-    }
+    setPause();
 
-    /**
-     * Новая позиция героя
-     */
-	heroObj.setHeroPos();
+    setInterval(function()
+    {
+        /**
+         * Гибель героя
+         */
+        if (end) {
+            $('#pause').fadeIn(100);
+            return;
+        }
 
-    /**
-     * Новая позиция заднего фона
-     */
-	bgObj.setBgPos();
+        /**
+         * Пауза
+         */
+        if (pause) {
+            $('#pause').fadeIn(100);
+            return;
+        } else {
+            $('#pause').fadeOut(100);
+        }
 
-    /**
-     * Стрельба героя
-     */
-	heroObj.shootArrow();
+        /**
+         * Новая позиция героя
+         */
+        heroObj.setHeroPos();
 
-    /**
-     * Манипуляции с монстрами
-     */
-    monstersObj.getMonsters().each(function() {
-        let pos = parseInt($(this).css('left'));
-        $(this).css({
-            left: pos - 1
-        });
-        let arrowObj = new Arrow();
-        if (parseInt(arrowObj.arrow.css('left')) >= pos) {
-            arrowObj.arrow.remove();
-            let width = parseInt($(this).find('.monster-width').width());
-            $(this).find('.monster-width').width(width - 25);
-            if (parseInt($(this).find('.monster-width').width()) <= 0) {
-                $(this).remove();
+        /**
+         * Новая позиция заднего фона
+         */
+        bgObj.setBgPos();
+
+        /**
+         * Стрельба героя
+         */
+        heroObj.shootArrow();
+
+        /**
+         * Манипуляции с монстрами
+         */
+        monstersObj.getMonsters().each(function() {
+            let pos = parseInt($(this).css('left'));
+            $(this).css({
+                left: pos - 1
+            });
+            let arrowObj = new Arrow();
+            if (parseInt(arrowObj.arrow.css('left')) >= pos) {
+                arrowObj.arrow.remove();
+                let width = parseInt($(this).find('.monster-width').width());
+                $(this).find('.monster-width').width(width - 25);
+                if (parseInt($(this).find('.monster-width').width()) <= 0) {
+                    $(this).remove();
+                }
             }
+        });
+
+        /**
+         * Определение ближайшего монстра к герою
+         */
+        let minPosMonster = 10000;
+        $('.monster').each(function() {
+            if (minPosMonster > parseInt($(this).css('left'))) {
+                minPosMonster = parseInt($(this).css('left'));
+            }
+        });
+
+        /**
+         * Уменьшение здоровья героя при столкновении с монстром
+         */
+        if (heroObj.getHeroPos() + HERO_WIDTH >= minPosMonster) {
+            heroObj.setHeroHealth(heroObj.getHeroHealth() - 1);
         }
-    });
 
-    /**
-     * Определение ближайшего монстра к герою
-     */
-    let minPosMonster = 10000;
-    $('.monster').each(function() {
-        if (minPosMonster > parseInt($(this).css('left'))) {
-            minPosMonster = parseInt($(this).css('left'));
+        /**
+         * Гибель героя
+         */
+        if (heroObj.getHeroHealth() <= 0) {
+            heroObj.healthJq.hide();
+            $('#hero').fadeOut(500);
+            end = true;
         }
-    });
 
-    /**
-     * Уменьшение здоровья героя при столкновении с монстром
-     */
-    if (heroObj.getHeroPos() + HERO_WIDTH >= minPosMonster) {
-        heroObj.setHeroHealth(heroObj.getHeroHealth() - 1);
-    }
+        /**
+         * Изменение линии жизни героя
+         */
+        heroObj.healthJq.width(heroObj.getHeroHealth());
 
-    /**
-     * Гибель героя
-     */
-    if (heroObj.getHeroHealth() <= 0) {
-        heroObj.healthJq.hide();
-        $('#hero').fadeOut(500);
-        end = true;
-    }
+    }, 20);
+}
 
-    /**
-     * Изменение линии жизни героя
-     */
-    heroObj.healthJq.width(heroObj.getHeroHealth());
-
-}, 20);
+game();

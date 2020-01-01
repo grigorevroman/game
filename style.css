@@ -64,3 +64,9 @@
 	position: absolute;
 	top: -15px;
 }
+#user {
+	position: absolute;
+	z-index: 1;
+	top: 40px;
+	left: 20px;
+}
