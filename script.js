@@ -19,7 +19,19 @@ pause = false, // Пауза
 end = false, // Гибель героя
 userNameJq = $('#user-name'),
 userName,
-startJq = $('#start');
+startJq = $('#start'),
+usersJson,
+user = {},
+users = {},
+menuJq = $('#menu');
+
+/**
+ * Инициальзация объектов
+ */
+let heroObj = new Hero();
+let bgObj = new Bg(heroObj);
+new Screen();
+let monstersObj = new Monsters(bgObj);
 
 userNameJq.keyup(function() {
     userName = userNameJq.val();
@@ -30,28 +42,38 @@ userNameJq.keyup(function() {
     }
 });
 
-/**
- * Зажатие клавишь
- */
-$(window).keydown(function(e) { 
-	d[e.which] = true; 
-});
+startJq.click(function() {
+    usersJson = localStorage.getItem(users);
+    users = JSON.parse(usersJson);
+    if (users) {
+        if (userName in users) {
+            users = users;
+        } else {
+            user.name = userName;
+            user.points = [];
+            users[userName] = [user];
+            usersJson = JSON.stringify(users);
+            localStorage.setItem(users, usersJson);
+        }
+    }
+    menuJq.hide();
 
-/**
- * Отжатие клавишь
- */
-$(window).keyup(function(e) { 
-	d[e.which] = false; 
-});
+    /**
+     * Зажатие клавишь
+     */
+    $(window).keydown(function(e) {
+        d[e.which] = true;
+    });
 
-/**
- * Инициальзация объектов
- */
-let heroObj = new Hero();
-let bgObj = new Bg(heroObj);
-new Screen();
-let monstersObj = new Monsters(bgObj);
-let arrowObj = new Arrow();
+    /**
+     * Отжатие клавишь
+     */
+    $(window).keyup(function(e) {
+        d[e.which] = false;
+    });
+
+    game();
+});
 
 function game()
 {
@@ -149,5 +171,3 @@ function game()
 
     }, 20);
 }
-
-game();
