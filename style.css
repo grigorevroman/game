@@ -49,6 +49,12 @@
 	left: 20px;
 	background-color: green;
 }
+#timer {
+	position: absolute;
+	z-index: 1;
+	top: 20px;
+	right: 20px;
+}
 .arrow {
     position: absolute;
     width: 100px;
