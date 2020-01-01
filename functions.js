@@ -48,6 +48,9 @@ function init()
 function timer()
 {
     setInterval(function() {
+        if (pause) {
+            return;
+        }
         let timer = $('#timer').html();
         let time = timer.split(':');
         time[1] = parseInt(time[1]) + 1;
