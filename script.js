@@ -16,7 +16,19 @@ let
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 d = {}, // Состояние клавишь <- и ->
 pause = false, // Пауза
-end = false; // Гибель героя
+end = false, // Гибель героя
+userNameJq = $('#user-name'),
+userName,
+startJq = $('#start');
+
+userNameJq.keyup(function() {
+    userName = userNameJq.val();
+    if (userName != '') {
+        startJq.removeAttr('disabled');
+    } else {
+        startJq.attr('disabled', 'disabled');
+    }
+});
 
 /**
  * Зажатие клавишь
