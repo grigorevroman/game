@@ -67,6 +67,12 @@
 #user {
 	position: absolute;
 	z-index: 1;
-	top: 40px;
+	top: 35px;
+	left: 20px;
+}
+#dead-monster-counter {
+	position: absolute;
+	z-index: 1;
+	top: 55px;
 	left: 20px;
 }

@@ -96,6 +96,8 @@ function game()
                 $(this).find('.monster-width').width(width - 25);
                 if (parseInt($(this).find('.monster-width').width()) <= 0) {
                     $(this).remove();
+                    let dmc = parseInt($('#dead-monster-counter > span').html());
+                    $('#dead-monster-counter > span').html(dmc + 1);
                 }
             }
         });
