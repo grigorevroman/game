@@ -36,6 +36,7 @@ function init()
         '</div>' +
         '<div id="pause"></div>' +
         '<div id="health"></div>' +
+        '<div id="magic"></div>' +
         '<div id="user">Имя игрока</div>' +
         '<div id="timer">00:00</div>' +
         '<div id="dead-monster-counter">Монстров убито: <span>0</span></div>' +
