@@ -10,6 +10,8 @@ MONSTER_WIDTH = 100,
 START_MONSTER_FIELD = [SCREEN_WIDTH, BG_WIDTH],
 HERO_HEALTH = 100;
 
+init();
+
 let
 x = 2, // Количество пикселей, которое преодолевает герой при одном нажатии на клавишу
 d = {}, // Состояние клавишь <- и ->
