@@ -2,6 +2,8 @@
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
 	font-size: 15px;
+	text-shadow: 1px 1px 2px black, 0 0 1px black;
+	color: white;
 }
 #screen {
 	height: 400px;
@@ -49,7 +51,8 @@
 	outline: 1px solid black;
 	top: 20px;
 	left: 20px;
-	background-color: green;
+	background: rgb(58,252,35);
+	background: linear-gradient(90deg, rgba(58,252,35,1) 0%, rgba(19,194,113,1) 100%, rgba(7,194,31,1) 100%);
 }
 #magic {
 	position: absolute;
@@ -59,7 +62,8 @@
 	outline: 1px solid black;
 	top: 35px;
 	left: 20px;
-	background-color: blue;
+	background: rgb(35,189,252);
+	background: linear-gradient(90deg, rgba(35,189,252,1) 0%, rgba(1,73,238,1) 99%, rgba(19,93,194,1) 100%);
 }
 #timer {
 	position: absolute;
@@ -77,9 +81,11 @@
 .monster-width {
 	width: 100px;
 	height: 5px;
-	background-color: red;
+	background: rgb(255,35,35);
+	background: linear-gradient(90deg, rgba(255,35,35,1) 0%, rgba(214,15,26,1) 90%, rgba(196,0,40,1) 100%);
 	position: absolute;
 	top: -15px;
+	border: 1px solid black;
 }
 #user {
 	position: absolute;
