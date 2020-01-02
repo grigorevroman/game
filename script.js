@@ -50,7 +50,9 @@ userNameJq.keyup(function() {
 
 startJq.click(function() {
     usersJson = localStorage.getItem(users);
-    users = JSON.parse(usersJson);
+    if (usersJson) {
+        users = JSON.parse(usersJson);
+    }
     if (users) {
         if (userName in users) {
             users = users;
@@ -61,6 +63,12 @@ startJq.click(function() {
             usersJson = JSON.stringify(users);
             localStorage.setItem(users, usersJson);
         }
+    } else {
+        user.name = userName;
+        user.points = [];
+        users[userName] = [user];
+        usersJson = JSON.stringify(users);
+        localStorage.setItem(users, usersJson);
     }
     menuJq.hide();
 
