@@ -27,6 +27,16 @@ class Hero
             result = HERO_MIN_POS;
         } else if (this.isHeroPosMax(newHeroPos)) {
             result = HERO_MAX_POS;
+            end = true;
+            usersJson = localStorage.getItem(users);
+            users = JSON.parse(usersJson);
+            let user = users[userName];
+            let deathMonsterCounter = parseInt($('#dead-monster-counter > span').html());
+            let timer = $('#timer').html();
+            user[0].games.push([deathMonsterCounter, timer]);
+            users[userName] = user;
+            usersJson = JSON.stringify(users);
+            localStorage.setItem(users, usersJson);
             location.reload();
         } else {
             result = newHeroPos;

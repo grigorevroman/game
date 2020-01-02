@@ -58,16 +58,14 @@ startJq.click(function() {
             users = users;
         } else {
             user.name = userName;
-            user.points = [];
-            user.times = [];
+            user.games = [];
             users[userName] = [user];
             usersJson = JSON.stringify(users);
             localStorage.setItem(users, usersJson);
         }
     } else {
         user.name = userName;
-        user.points = [];
-        user.times = [];
+        user.games = [];
         users[userName] = [user];
         usersJson = JSON.stringify(users);
         localStorage.setItem(users, usersJson);

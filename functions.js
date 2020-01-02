@@ -49,7 +49,7 @@ function init()
 function timer()
 {
     setInterval(function() {
-        if (pause) {
+        if (pause || end) {
             return;
         }
         let timer = $('#timer').html();
