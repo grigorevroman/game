@@ -22,6 +22,9 @@ function setPause()
 	});
 }
 
+/**
+ * Инициализация базовой верстки
+ */
 function init()
 {
     $('#screen').html(
@@ -46,6 +49,9 @@ function init()
     );
 }
 
+/**
+ * Добавление таймера
+ */
 function timer()
 {
     setInterval(function() {
@@ -69,6 +75,9 @@ function timer()
     }, 1000);
 }
 
+/**
+ * Восстановление жизни
+ */
 function healthRecovery()
 {
     setInterval(function() {

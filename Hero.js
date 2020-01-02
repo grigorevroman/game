@@ -26,6 +26,10 @@ class Hero
         if (this.isHeroPosMin(newHeroPos)) {
             result = HERO_MIN_POS;
         } else if (this.isHeroPosMax(newHeroPos)) {
+
+            /**
+             * Запись и отображение результатов
+             */
             result = HERO_MAX_POS;
             end = true;
             usersJson = localStorage.getItem(users);

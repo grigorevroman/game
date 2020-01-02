@@ -48,7 +48,14 @@ userNameJq.keyup(function() {
     }
 });
 
+/**
+ * Начало игры
+ */
 startJq.click(function() {
+
+    /**
+     * Запись данных о юзере
+     */
     usersJson = localStorage.getItem(users);
     if (usersJson) {
         users = JSON.parse(usersJson);
@@ -87,9 +94,15 @@ startJq.click(function() {
         d[e.which] = false;
     });
 
+    /**
+     * Запуск игры
+     */
     game();
 });
 
+/**
+ * Запуск игры
+ */
 function game()
 {
     /**
