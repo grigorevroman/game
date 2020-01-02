@@ -18,7 +18,7 @@ class Monsters
         let monsterFields = [START_MONSTER_FIELD];
         let monsterPoss = [];
         let i = 1;
-        while (i <= 5) {
+        while (i <= COUNT_MONSTERS) {
             let monsterFieldsNum = monsterFields.length;
             if (monsterFieldsNum > 0) {
                 let currentFieldNum = Math.floor(Math.random() * (monsterFieldsNum - 1 + 1)) + 1;

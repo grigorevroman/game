@@ -1,14 +1,15 @@
 const
 SCREEN_WIDTH = 1000, // Ширина экрана
-BG_WIDTH = 2000, // Ширина заднего фона
+BG_WIDTH = 5000, // Ширина заднего фона
 HERO_WIDTH = 100, // Ширина героя
 HERO_MIN_POS = 0, // Минимальная позиция героя
 HERO_MAX_POS = BG_WIDTH - HERO_WIDTH, // Максимальная позиция героя
 HERO_MIN_POS_CENTER = (SCREEN_WIDTH - HERO_WIDTH) / 2, // Минимальная поциция героя в центре
 HERO_MAX_POS_CENTER = BG_WIDTH - SCREEN_WIDTH + HERO_MIN_POS_CENTER, // Максимальная позиция героя в центре
-MONSTER_WIDTH = 100,
-START_MONSTER_FIELD = [SCREEN_WIDTH, BG_WIDTH],
-HERO_HEALTH = 100;
+MONSTER_WIDTH = 100, // Ширина монстров
+START_MONSTER_FIELD = [SCREEN_WIDTH, BG_WIDTH], // Свободное поле для монстров
+HERO_HEALTH = 100, // Шкала здоровья
+COUNT_MONSTERS = 20; // Максимальное количество монстров
 
 /**
  * Инициализация базовой верстки
@@ -20,16 +21,16 @@ x = 2, // Количество пикселей, которое преодоле
 d = {}, // Состояние клавишь <- и ->
 pause = false, // Пауза
 end = false, // Гибель героя
-userNameJq = $('#user-name'),
-userName,
-startJq = $('#start'),
-usersJson,
-user = {},
-users = {},
-menuJq = $('#menu');
+userNameJq = $('#user-name'), // Имя игрока
+userName, // Имя игрока
+startJq = $('#start'), // Стартовое меню
+usersJson, // Данные о игроках в формате JSON
+user = {}, // Данные о игроке
+users = {}, // Данные о игроках
+menuJq = $('#menu'); // Меню
 
 /**
- * Инициальзация объектов
+ * Инициализация объектов
  */
 let heroObj = new Hero();
 let bgObj = new Bg(heroObj);
