@@ -111,8 +111,14 @@
 	background: linear-gradient(90deg, rgba(55,0,0,1) 0%, rgba(91,0,5,1) 100%, rgba(17,0,3,1) 100%);
 	padding: 0 10px 10px 10px;
 	border-radius: 3px;
-	left: 405px;
 	top: 140px;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+#menu {
+	width: 170px;
 }
 #menu > div, #results > div {
 	margin-top: 10px;
@@ -133,7 +139,7 @@
 	border-radius: 3px;
 }
 #results {
-	left: 435px;
+	width: 133px;
 }
 #instruction  {
 	z-index: 1;
