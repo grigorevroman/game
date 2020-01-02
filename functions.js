@@ -40,9 +40,13 @@ function init()
         '<div id="pause"></div>' +
         '<div id="health"></div>' +
         '<div id="magic"></div>' +
-        '<div id="user">Имя игрока: <span></span></div>' +
+        '<div id="user">Игрок: <span></span></div>' +
         '<div id="timer">00:00</div>' +
         '<div id="dead-monster-counter">Монстров убито: <span>0</span></div>' +
+        '<div id="instruction">' +
+            '<div>Пауза - Esc</div>' +
+            '<div>Выстрел - 1</div>' +
+        '</div>' +
         '<div id="bg">' +
             '<div id="hero"></div>' +
         '</div>'

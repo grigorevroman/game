@@ -2,8 +2,8 @@
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
 	font-size: 15px;
-	text-shadow: 1px 1px 2px black, 0 0 1px black;
-	color: white;
+	text-shadow: 1px 1px 10px black, 1px 0 0 black;
+	color: #e4cece;
 }
 #screen {
 	height: 400px;
@@ -51,8 +51,8 @@
 	outline: 1px solid black;
 	top: 20px;
 	left: 20px;
-	background: rgb(58,252,35);
-	background: linear-gradient(90deg, rgba(58,252,35,1) 0%, rgba(19,194,113,1) 100%, rgba(7,194,31,1) 100%);
+	background: rgb(24,158,49);
+	background: linear-gradient(90deg, rgba(24,158,49,1) 0%, rgba(24,144,64,1) 100%, rgba(91,0,5,1) 100%);
 }
 #magic {
 	position: absolute;
@@ -62,14 +62,14 @@
 	outline: 1px solid black;
 	top: 35px;
 	left: 20px;
-	background: rgb(35,189,252);
-	background: linear-gradient(90deg, rgba(35,189,252,1) 0%, rgba(1,73,238,1) 99%, rgba(19,93,194,1) 100%);
+	background: rgb(44,73,175);
+	background: linear-gradient(90deg, rgba(44,73,175,1) 0%, rgba(11,34,126,1) 100%, rgba(91,0,5,1) 100%);
 }
 #timer {
 	position: absolute;
 	z-index: 1;
 	top: 20px;
-	right: 20px;
+	right: 33px;
 }
 .arrow {
     position: absolute;
@@ -99,15 +99,40 @@
 	top: 68px;
 	left: 20px;
 }
-#menu {
+#menu, #results {
 	position: absolute;
 	z-index: 3;
-	background: white;
+	background: rgb(55,0,0);
+	background: linear-gradient(90deg, rgba(55,0,0,1) 0%, rgba(91,0,5,1) 100%, rgba(17,0,3,1) 100%);
+	padding: 0 10px 10px 10px;
+	border-radius: 3px;
+	left: 405px;
+	top: 140px;
+}
+#menu > div, #results > div {
+	margin-top: 10px;
+}
+#menu button, #results input[type=submit] {
+	background: rgb(24,158,49);
+	background: linear-gradient(90deg, rgba(24,158,49,1) 0%, rgba(24,144,64,1) 100%, rgba(91,0,5,1) 100%);
+	border: none;
+	padding: 3px 15px;
+	border-radius: 3px;
+	box-shadow: 1px 1px 1px black, 0 0 0 #eaeaea;
+}
+#menu input {
+	background: rgb(186,89,89);
+	background: linear-gradient(90deg, rgba(186,89,89,1) 0%, rgba(91,0,5,1) 100%, rgba(125,44,59,1) 100%);
+	border: none;
+	padding: 4px;
+	border-radius: 3px;
 }
 #results {
-	z-index: 3;
+	left: 435px;
+}
+#instruction  {
+	z-index: 1;
 	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: white;
+	right:10px;
+	top: 50px;
 }
