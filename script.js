@@ -59,6 +59,7 @@ startJq.click(function() {
         } else {
             user.name = userName;
             user.points = [];
+            user.times = [];
             users[userName] = [user];
             usersJson = JSON.stringify(users);
             localStorage.setItem(users, usersJson);
@@ -66,6 +67,7 @@ startJq.click(function() {
     } else {
         user.name = userName;
         user.points = [];
+        user.times = [];
         users[userName] = [user];
         usersJson = JSON.stringify(users);
         localStorage.setItem(users, usersJson);
