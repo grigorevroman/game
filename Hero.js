@@ -37,7 +37,7 @@ class Hero
             users[userName] = user;
             usersJson = JSON.stringify(users);
             localStorage.setItem(users, usersJson);
-            location.reload();
+            $('#screen').append('<div id="results">123<div><form><input type="submit" value="Начать заново"></form></div></div>');
         } else {
             result = newHeroPos;
         }
