@@ -7,7 +7,6 @@
 }
 #screen {
 	height: 400px;
-	outline: 1px dotted black;
 	position: relative;
 	overflow: hidden;
 }
