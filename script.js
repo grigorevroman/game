@@ -70,6 +70,7 @@ startJq.click(function() {
         usersJson = JSON.stringify(users);
         localStorage.setItem(users, usersJson);
     }
+    $('#user').html(userName);
     menuJq.hide();
 
     /**
