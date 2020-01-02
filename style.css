@@ -51,7 +51,7 @@
 	z-index: 1;
 	width: 100px;
 	height: 10px;
-	outline: 1px solid black;
+	outline: 1px solid green;
 	top: 20px;
 	left: 20px;
 	background: rgb(24,158,49);
@@ -62,7 +62,7 @@
 	z-index: 1;
 	width: 100px;
 	height: 10px;
-	outline: 1px solid black;
+	outline: 1px solid blue;
 	top: 35px;
 	left: 20px;
 	background: rgb(44,73,175);
@@ -90,7 +90,7 @@
 	background: linear-gradient(90deg, rgba(255,35,35,1) 0%, rgba(214,15,26,1) 90%, rgba(196,0,40,1) 100%);
 	position: absolute;
 	top: -15px;
-	border: 1px solid black;
+	border: 1px solid red;
 }
 #user {
 	position: absolute;
