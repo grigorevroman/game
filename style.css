@@ -30,18 +30,19 @@
 }
 #hero {
     position: absolute;
-	outline: 1px dotted black;
     top: 125px;
     left: 50px;
     height: 150px;
-	background-color: green;
+	background: rgb(24,158,49);
+	background: linear-gradient(90deg, rgba(24,158,49,1) 0%, rgba(24,144,64,1) 100%, rgba(91,0,5,1) 100%);
 }
 .monster {
 	width: 100px;
 	height: 150px;
-	outline: 1px dotted black;
 	position: absolute;
 	top: 125px;
+	background: rgb(255,35,35);
+	background: linear-gradient(90deg, rgba(255,35,35,1) 0%, rgba(214,15,26,1) 90%, rgba(196,0,40,1) 100%);
 }
 #health {
 	position: absolute;
@@ -75,7 +76,8 @@
     position: absolute;
     width: 100px;
     height: 5px;
-    outline: 1px solid black;
+	background: rgb(55,0,0);
+	background: linear-gradient(90deg, rgba(55,0,0,1) 0%, rgba(91,0,5,1) 100%, rgba(17,0,3,1) 100%);
     top: 180px;
 }
 .monster-width {
