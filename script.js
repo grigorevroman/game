@@ -154,7 +154,7 @@ function game()
             if (parseInt(arrowObj.arrow.css('left')) >= pos) {
                 arrowObj.arrow.remove();
                 let width = parseInt($(this).find('.monster-width').width());
-                $(this).find('.monster-width').width(width - 25);
+                $(this).find('.monster-width').width(width - 15);
                 if (parseInt($(this).find('.monster-width').width()) <= 0) {
                     $(this).remove();
                     let dmc = parseInt($('#dead-monster-counter > span').html());
