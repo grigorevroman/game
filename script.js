@@ -201,6 +201,7 @@ function game()
             heroObj.healthJq.hide();
             $('#hero').fadeOut(500);
             end = true;
+            $('#screen').append('<div id="results"><div>Вы проиграли!</div><div><form><input type="submit" value="Начать заново"></form></div></div>');
         }
 
         /**
